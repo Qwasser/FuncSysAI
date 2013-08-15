@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import labyrinth.gfx.Screen;
 import labyrinth.gfx.SpriteSheet;
 
 import javax.swing.*;
@@ -27,19 +28,13 @@ public class LabyrinthUI extends Canvas implements Runnable{
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixele = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 
-    private SpriteSheet spriteSheet;
+    private Screen screen;
 
     boolean running;
     int tickCount = 0;
     public  LabyrinthUI()
     {
-        try
-        {
-            new SpriteSheet("/res/sprite_sheet.png");
-        }catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+
         setMinimumSize(new Dimension(WIDTH* SCALE, HEIGHT* SCALE));
         setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -58,7 +53,6 @@ public class LabyrinthUI extends Canvas implements Runnable{
         mainFrame.pack();
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
-
     }
 
     @Override
@@ -71,6 +65,9 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
         long lastTimer = System.currentTimeMillis();
         double delta = 0;
+
+        init();
+
         while(running)
         {
             long now = System.nanoTime();
@@ -84,6 +81,8 @@ public class LabyrinthUI extends Canvas implements Runnable{
                 delta-=1;
                 shouldRender = true;
             }
+
+            screen.render(pixele, 0, WIDTH);
 
             try {
                 Thread.sleep(2);
@@ -107,6 +106,16 @@ public class LabyrinthUI extends Canvas implements Runnable{
         }
     }
 
+    public void init(){
+        try
+        {
+            screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/res/sprite_sheet.png"));
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public synchronized  void start()
     {
         new Thread(this).start();
@@ -122,10 +131,8 @@ public class LabyrinthUI extends Canvas implements Runnable{
     public void tick()
     {
         tickCount++;
-        for(int i=0; i < pixele.length; i++ )
-        {
-            pixele[i] = i + 100000 + tickCount;
-        }
+        screen.xOffset++;
+        screen.yOffset++;
     }
 
     public void render()
