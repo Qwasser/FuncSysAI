@@ -14,10 +14,11 @@
     <file path="/LabyrinthWalker.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376511540487" ignored="false" />
     <file path="/LabyrinthGame.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376518895353" ignored="false" />
     <file path="/PredicateTable.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376496032455" ignored="false" />
-    <file path="/LabyrinthUI.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376579242052" ignored="false" />
+    <file path="/LabyrinthUI.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376592908556" ignored="false" />
     <file path="/NewGame.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376552360764" ignored="false" />
     <file path="/SpriteSheet.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376574261167" ignored="false" />
     <file path="/Screen.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376578604807" ignored="false" />
+    <file path="/InputHandler.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376593273555" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,9 +81,7 @@
         <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthWalker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="48" column="63" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#1106#1253#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,12 +104,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LabyrinthUI.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LabyrinthUI.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="134" column="25" selection-start="3506" selection-end="3506" vertical-scroll-proportion="0.51031893">
+            <state line="143" column="28" selection-start="3680" selection-end="3680" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InputHandler.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/InputHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="85" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.4760274">
+              <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -139,9 +149,7 @@
         <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/SpriteSheet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="26" column="34" selection-start="629" selection-end="649" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -174,7 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$USER_HOME$/Downloads/fs/src/ru/nsu/alife/fs/FS.java" />
         <option value="$USER_HOME$/Downloads/fs/src/ru/nsu/alife/fs/ShortMemory.java" />
         <option value="$USER_HOME$/Downloads/fs/src/ru/nsu/alife/fs/IFunctionalSystem.java" />
         <option value="$USER_HOME$/Downloads/fs/src/ru/nsu/alife/fs/IAcceptor.java" />
@@ -190,13 +197,15 @@
         <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/SpriteSheet.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Screen.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/LabyrinthUI.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/InputHandler.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="960" />
-    <option name="width" value="960" />
-    <option name="height" value="1040" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -224,6 +233,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -266,50 +277,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AIonFS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FuncSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gfx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AIonFS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FuncSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -327,9 +300,9 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -368,19 +341,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -406,6 +366,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -483,8 +456,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="960" y="0" width="960" height="1040" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -499,8 +472,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24498886" sideWeight="0.6715742" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32842582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.117395945" sideWeight="0.6785317" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3214683" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -613,9 +586,7 @@
     <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthWalker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="63" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#1106#1253#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -650,9 +621,7 @@
     <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/SpriteSheet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="34" selection-start="629" selection-end="649" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -672,9 +641,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="25" selection-start="3506" selection-end="3506" vertical-scroll-proportion="0.51031893">
+        <state line="143" column="28" selection-start="3680" selection-end="3680" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/InputHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="85" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.4760274">
+          <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>

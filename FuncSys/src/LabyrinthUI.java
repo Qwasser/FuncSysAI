@@ -29,6 +29,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
     private int[] pixele = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 
     private Screen screen;
+    public InputHandler input;
 
     boolean running;
     int tickCount = 0;
@@ -114,6 +115,8 @@ public class LabyrinthUI extends Canvas implements Runnable{
         {
             e.printStackTrace();
         }
+
+        input = new InputHandler(this);
     }
 
     public synchronized  void start()
@@ -131,8 +134,15 @@ public class LabyrinthUI extends Canvas implements Runnable{
     public void tick()
     {
         tickCount++;
-        screen.xOffset++;
-        screen.yOffset++;
+        if(input.up.isPressed)
+        {
+            screen.yOffset--;
+        }
+
+        if(input.down.isPressed)
+        {
+            screen.yOffset++;
+        }
     }
 
     public void render()
