@@ -8,12 +8,25 @@
 
 import ru.nsu.alife.fs.*;
 
+import java.util.List;
+
 class LabyrinthWalker extends IAcceptor {
+
+    // AI main FS
+    public IFunctionalSystem primaryFS;
+
+    // labyrinth
+    private LabyrinthGame labyrinth;
+
+    public LabyrinthWalker(LabyrinthGame labyrinth, PredicateSet goal) {
+        this.labyrinth = labyrinth;
+        primaryFS = (IFunctionalSystem) new FunctionalSystem(goal, 3);
+    }
 
 
     @Override
     public PredicateSet getCurrentSituation() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return labyrinth.getSituationForAnimate(this);
     }
 
     @Override
@@ -23,6 +36,40 @@ class LabyrinthWalker extends IAcceptor {
 
     @Override
     public IAction getRandomAction() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<IAction> actions = labyrinth.getPossibleActionsForAnimate(this);
+        IAction action = actions.get((int) (Math.random() * actions.size()));
+        return action;
     }
+
+    public final IAction stepForward = new IAction() {
+        @Override
+        public boolean doAction() {
+            labyrinth.stepForward();
+            return true;
+        }
+    };
+
+    public final IAction grabGold = new IAction() {
+        @Override
+        public boolean doAction() {
+            labyrinth.grabGold();
+            return true;
+        }
+    };
+
+    public final IAction turnLeft = new IAction() {
+        @Override
+        public boolean doAction() {
+            labyrinth.turnLeft();
+            return true;
+        }
+    };
+
+    public final IAction turnRight = new IAction() {
+        @Override
+        public boolean doAction() {
+            labyrinth.turnRight();
+            return true;
+        }
+    };
 }

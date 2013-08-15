@@ -140,6 +140,16 @@ public class FunctionalSystem implements IFunctionalSystem
         else
         {
             acceptor.memory.lastFs.addRule(acceptor, endState);
+
+            for (Rule rule: rules)
+            {
+                if (!this.rulesToFs.containsValue(rule) && this.depth > 0)
+                {
+                    FunctionalSystem fs = this.createSubFS(rule.getPredicates(), this, acceptor);
+                    this.rulesToFs.put(fs, rule);
+                }
+            }
+
         }
 
     }
