@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import labyrinth.gfx.Colours;
 import labyrinth.gfx.Screen;
 import labyrinth.gfx.SpriteSheet;
 
@@ -27,6 +28,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixele = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+    private int[] colours = new int[6*6*6];
 
     private Screen screen;
     public InputHandler input;
@@ -83,7 +85,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
                 shouldRender = true;
             }
 
-            screen.render(pixele, 0, WIDTH);
+
 
             try {
                 Thread.sleep(2);
@@ -108,6 +110,21 @@ public class LabyrinthUI extends Canvas implements Runnable{
     }
 
     public void init(){
+        int index = 0;
+        for (int r = 0; r < 6; r++){
+            for (int g = 0; g < 6; g++){
+                for (int b = 0; b < 6; b++){
+                    int rr = (r*255/5);
+                    int gg = (g*255/5);
+                    int bb = (b*255/5);
+
+                    colours[index++] = rr<<16|gg<<8|bb;
+
+
+                }
+            }
+        }
+
         try
         {
             screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/res/sprite_sheet.png"));
@@ -152,9 +169,25 @@ public class LabyrinthUI extends Canvas implements Runnable{
             createBufferStrategy(3);
             return;
         }
+
+        for (int y =0; y<32; y++){
+            for (int  x=0; x<32; x++){
+                screen.render(x<<3, y<<3, 0, Colours.get(555, 505, 055, 550), false, false);
+            }
+
+        }
+
+        for (int y =0; y<screen.height; y++){
+            for (int  x=0; x<screen.width; x++){
+                int colorCode = screen.pixels[x+y*screen.width];
+                if (colorCode<255)  pixele[x+y*WIDTH] = colours[colorCode];
+
+
+            }
+
+        }
+
         Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, getWidth(), getHeight());
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
         g.dispose();
         bs.show();

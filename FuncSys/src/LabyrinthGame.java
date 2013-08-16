@@ -3,6 +3,7 @@ import ru.nsu.alife.fs.IAction;
 import ru.nsu.alife.fs.PredicateSet;
 import sun.font.TrueTypeFont;
 
+
 import java.security.PublicKey;
 import java.util.LinkedList;
 import java.util.List;
