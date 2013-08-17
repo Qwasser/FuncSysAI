@@ -9,6 +9,7 @@
 import labyrinth.gfx.Colours;
 import labyrinth.gfx.Screen;
 import labyrinth.gfx.SpriteSheet;
+import level.Level;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +33,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
     private Screen screen;
     public InputHandler input;
+    private Level level;
 
     boolean running;
     int tickCount = 0;
@@ -134,6 +136,9 @@ public class LabyrinthUI extends Canvas implements Runnable{
         }
 
         input = new InputHandler(this);
+        level = new Level(64, 64);
+
+
     }
 
     public synchronized  void start()
@@ -148,6 +153,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
     }
 
+    private int x = 0, y = 0;
     public void tick()
     {
         tickCount++;
@@ -160,6 +166,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
         {
             screen.yOffset++;
         }
+        level.tick();
     }
 
     public void render()
@@ -170,12 +177,9 @@ public class LabyrinthUI extends Canvas implements Runnable{
             return;
         }
 
-        for (int y =0; y<32; y++){
-            for (int  x=0; x<32; x++){
-                screen.render(x<<3, y<<3, 0, Colours.get(555, 505, 055, 550), false, false);
-            }
-
-        }
+        int xOffset = x - (screen.width/2);
+        int yOffset = y - (screen.height/2);
+        level.renderTile(screen, xOffset, yOffset);
 
         for (int y =0; y<screen.height; y++){
             for (int  x=0; x<screen.width; x++){
@@ -186,6 +190,8 @@ public class LabyrinthUI extends Canvas implements Runnable{
             }
 
         }
+
+
 
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
