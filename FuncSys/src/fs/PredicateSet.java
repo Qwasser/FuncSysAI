@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 /**
  * Class describes structure with indexed
@@ -48,7 +48,7 @@ public class PredicateSet {
      *
      * @param index predicate position
      * @param value value to set to requested predicate
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public void set(int index, boolean value) throws InvalidArgumentException {
@@ -81,7 +81,7 @@ public class PredicateSet {
      * @param pattern input predicate structure
      * @return true if current set contains input set of predicates,
      *         false if not
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public boolean contains(PredicateSet pattern) throws InvalidArgumentException {
@@ -99,7 +99,7 @@ public class PredicateSet {
      * @param pattern input predicate structure
      * @return true if current set partially contains input set of predicates,
      *         false if not
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public boolean partiallyContains(PredicateSet pattern) throws InvalidArgumentException {
@@ -115,7 +115,7 @@ public class PredicateSet {
      * @param index predicate position
      * @return state (true/false) of requested predicate,
      *         null if predicate is inactive
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public Boolean getPredicateValue(int index) throws InvalidArgumentException {
@@ -175,7 +175,7 @@ public class PredicateSet {
      *
      * @param input another instance of PredicateSet
      * @return new PredicateSet with processed predicates and states
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public PredicateSet and(PredicateSet input) throws InvalidArgumentException {
@@ -193,7 +193,7 @@ public class PredicateSet {
      *
      * @param input another instance of PredicateSet
      * @return new PredicateSet with processed predicates and states
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public PredicateSet xor(PredicateSet input) throws InvalidArgumentException {
@@ -211,7 +211,7 @@ public class PredicateSet {
      *
      * @param input another instance of PredicateSet
      * @return new PredicateSet with processed predicates and states
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public PredicateSet or(PredicateSet input) {

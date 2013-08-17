@@ -1,3 +1,5 @@
+import labyrinth.game.LabyrinthUI;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Admin

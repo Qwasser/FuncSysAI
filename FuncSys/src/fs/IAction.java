@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 /**
  * Interface introducing any action in system.

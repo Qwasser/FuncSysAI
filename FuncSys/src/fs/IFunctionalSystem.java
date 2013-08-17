@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 /**
  * Interface for FS Used to fast switch between Fake and Real FS'

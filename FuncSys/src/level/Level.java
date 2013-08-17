@@ -1,6 +1,11 @@
 package level;
 
+import enteties.Entity;
+import enteties.Player;
 import labyrinth.gfx.Screen;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,6 +18,8 @@ public class Level {
     private byte[] tiles;
     public int width;
     public int height;
+
+    public List<Entity> enteties = new ArrayList<Entity>();
 
     public Level(int width, int height){
         tiles = new byte[width*height];
@@ -56,5 +63,22 @@ public class Level {
     }
 
     public void tick() {
+        for (Entity e: enteties)
+        {
+            e.tick();
+        }
+
+    }
+
+    public void renderEntities(Screen screen){
+        for (Entity e: enteties)
+        {
+            e.render(screen);
+        }
+
+    }
+
+    public void addEntity(Player player) {
+        this.enteties.add(player);
     }
 }

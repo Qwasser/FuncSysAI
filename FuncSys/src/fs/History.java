@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -34,7 +34,7 @@ class History
 	 *            action performed during input event
 	 * @param result
 	 *            result state that was obtained after action performing
-	 * @throws ru.nsu.alife.fs.InvalidArgumentException
+	 * @throws fs.InvalidArgumentException
 	 * 
 	 */
 	public void addEvent( PredicateSet startState, IAction action, PredicateSet result )
@@ -65,7 +65,7 @@ class History
 	 * @param result
 	 *            result pattern
 	 * @return set of suitable events
-	 * @throws ru.nsu.alife.fs.InvalidArgumentException
+	 * @throws fs.InvalidArgumentException
 	 * 
 	 */
 	public Set< Event > getEventsWithResult( PredicateSet result ) throws InvalidArgumentException
@@ -96,7 +96,7 @@ class History
 	 * @param result
 	 *            result state that was obtained after action performing
 	 * @return calculated total statistics of all suitable events
-	 * @throws ru.nsu.alife.fs.InvalidArgumentException
+	 * @throws fs.InvalidArgumentException
 	 * 
 	 */
 	public Statistics getStatistics( PredicateSet startState, IAction action, PredicateSet result )

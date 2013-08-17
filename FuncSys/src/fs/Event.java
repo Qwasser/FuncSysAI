@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 /**
  * Class represents an event defined as a set of the following parameters: start
@@ -39,7 +39,7 @@ class Event
 	 *            action performed
 	 * @param result
 	 *            resulting state (after performing action)
-	 * @throws ru.nsu.alife.fs.InvalidArgumentException
+	 * @throws fs.InvalidArgumentException
 	 */
 	public Event( PredicateSet startState, IAction action, PredicateSet result )
 	        throws InvalidArgumentException
@@ -62,7 +62,7 @@ class Event
 	 * 
 	 * @param result
 	 *            new result
-	 * @throws ru.nsu.alife.fs.InvalidArgumentException
+	 * @throws fs.InvalidArgumentException
 	 */
 	public void addResult( PredicateSet result ) throws InvalidArgumentException
 	{
@@ -91,7 +91,7 @@ class Event
 	 * @param result
 	 *            result to choose and calculate statistics
 	 * @return calculates statistics for requested event
-	 * @throws ru.nsu.alife.fs.InvalidArgumentException
+	 * @throws fs.InvalidArgumentException
 	 * 
 	 */
 	public Statistics getResultStatistics( PredicateSet result ) throws InvalidArgumentException
@@ -122,7 +122,7 @@ class Event
 	 * @param result
 	 *            result to check
 	 * @return true if event contains the result, false if not
-	 * @throws ru.nsu.alife.fs.InvalidArgumentException
+	 * @throws fs.InvalidArgumentException
 	 * 
 	 */
 	public boolean hasResult( PredicateSet result ) throws InvalidArgumentException
@@ -139,7 +139,7 @@ class Event
 	 * @param startState
 	 *            start state
 	 * @return true | false
-	 * @throws ru.nsu.alife.fs.InvalidArgumentException
+	 * @throws fs.InvalidArgumentException
 	 * 
 	 */
 	public boolean hasStartState( PredicateSet startState )
@@ -158,7 +158,7 @@ class Event
 	 * @param action
 	 *            input action
 	 * @return true if it has false if not
-	 * @throws ru.nsu.alife.fs.InvalidArgumentException
+	 * @throws fs.InvalidArgumentException
 	 * 
 	 */
 	public boolean hasStartStateAndAction( PredicateSet startState, IAction action )

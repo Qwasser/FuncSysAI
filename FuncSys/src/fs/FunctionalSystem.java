@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -237,7 +237,7 @@ public class FunctionalSystem implements IFunctionalSystem
      * @param eventResult
      *            result criteria to rule generation
      * @return generated set of rules
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     private static Set< Rule > generateRules( Set< Event > events, PredicateSet eventResult )

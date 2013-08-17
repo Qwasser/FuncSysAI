@@ -26,7 +26,7 @@ public abstract class Mob extends Entity{
     public void move(int x0, int y0){
         if (x0 != 0 && y0 !=0){
             move(x0, 0);
-            move(y0,0);
+            move(0,y0);
             numSteps--;
             return;
         }

@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 import java.util.LinkedList;
 import java.util.List;

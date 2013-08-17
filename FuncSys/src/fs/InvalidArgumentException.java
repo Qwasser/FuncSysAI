@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 public class InvalidArgumentException extends RuntimeException{
     public InvalidArgumentException(String tagClass, String tagMethod,

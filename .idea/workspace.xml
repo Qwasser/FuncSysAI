@@ -4,20 +4,21 @@
     <list default="true" id="96812c42-55a0-44eb-a72f-ae12e948ab98" name="Default" comment="" />
     <ignored path="AIonFS.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/LabyrinthUI.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376687697721" ignored="false" />
+    <file path="/LabyrinthUI.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376737079105" ignored="false" />
     <file path="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/colour.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376634809233" ignored="false" />
     <file path="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Colour.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376634834264" ignored="false" />
     <file path="/Colours.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376635383304" ignored="false" />
-    <file path="/Screen.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376685704215" ignored="false" />
+    <file path="/Screen.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376740132873" ignored="false" />
     <file path="/LabyrinthGame.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376640273109" ignored="false" />
     <file path="/Font.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376645758519" ignored="false" />
-    <file path="/Level.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376687799930" ignored="false" />
+    <file path="/Level.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376735873065" ignored="false" />
     <file path="/Tile.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376727872700" ignored="false" />
     <file path="/BasicTile.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376686852151" ignored="false" />
     <file path="$PROJECT_DIR$/FuncSys/src/enteties.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376729293928" ignored="false" />
     <file path="/Entity.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376730039106" ignored="false" />
-    <file path="/Mob.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376730697748" ignored="false" />
-    <file path="/Player.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376730909634" ignored="false" />
+    <file path="/Mob.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376739079432" ignored="false" />
+    <file path="/Player.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376740201615" ignored="false" />
+    <file path="/fragment.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376733142381" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,11 +77,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LabyrinthUI.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthUI.java">
+      <file leaf-file-name="Colours.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Colours.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="180" column="40" selection-start="4488" selection-end="4488" vertical-scroll-proportion="0.0">
+            <state line="24" column="41" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Screen.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Screen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="55" column="40" selection-start="1581" selection-end="1581" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpriteSheet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/SpriteSheet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="13" selection-start="285" selection-end="285" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/enteties/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="66" column="101" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.90019196">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,7 +118,52 @@
       <file leaf-file-name="Level.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FuncSys/src/level/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="1160" selection-end="1160" vertical-scroll-proportion="0.0">
+            <state line="75" column="27" selection-start="1966" selection-end="1966" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#438#446#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LabyrinthGame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="13" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InputHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/InputHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="13" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LabyrinthUI.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="197" column="37" selection-start="4901" selection-end="4901" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasicTile.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/level/BasicTile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="49" selection-start="590" selection-end="590" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -105,73 +180,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Colours.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Colours.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="41" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasicTile.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/level/BasicTile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="47" selection-start="588" selection-end="588" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Screen.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Screen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="31" selection-start="1783" selection-end="1783" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Entity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/enteties/Entity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="47" selection-start="498" selection-end="498" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mob.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/enteties/Mob.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="25" selection-start="1179" selection-end="1179" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/enteties/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="47" selection-start="240" selection-end="240" vertical-scroll-proportion="0.2660194">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InputHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/InputHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="13" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -184,14 +192,15 @@
       <list>
         <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Colours.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/LabyrinthGame.java" />
-        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Font.java" />
-        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Screen.java" />
-        <option value="$PROJECT_DIR$/FuncSys/src/level/BasicTile.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/LabyrinthUI.java" />
-        <option value="$PROJECT_DIR$/FuncSys/src/level/Level.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/level/Tile.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/enteties/Entity.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/level/Level.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthUI.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/enteties/Mob.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Font.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/level/BasicTile.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Screen.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/enteties/Player.java" />
       </list>
     </option>
@@ -324,6 +333,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="labyrinth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="gfx" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -342,7 +355,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="enteties" />
+              <option name="myItemId" value="labyrinth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -356,7 +373,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="fs" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="enteties" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -542,13 +563,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.189099" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19284065" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21986607" sideWeight="0.66397226" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3360277" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22098215" sideWeight="0.6709007" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290993" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -627,15 +648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthWalker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="6" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0">
@@ -643,74 +655,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/SpriteSheet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="285" selection-end="285" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Font.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="77" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/src.zip!/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="721" column="0" selection-start="26865" selection-end="26865" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/level/BasicTile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="47" selection-start="588" selection-end="588" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Colours.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="41" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/level/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1160" selection-end="1160" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/level/Tile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="90" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="40" selection-start="4488" selection-end="4488" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/InputHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Screen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="31" selection-start="1783" selection-end="1783" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -726,14 +673,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FuncSys/src/enteties/Mob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="25" selection-start="1179" selection-end="1179" vertical-scroll-proportion="0.0">
+        <state line="28" column="21" selection-start="659" selection-end="659" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Font.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="80" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Colours.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="41" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/SpriteSheet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="285" selection-end="285" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/level/Tile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="90" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/level/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="27" selection-start="1966" selection-end="1966" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#438#446#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/LabyrinthGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/InputHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="197" column="37" selection-start="4901" selection-end="4901" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/level/BasicTile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="49" selection-start="590" selection-end="590" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Screen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="40" selection-start="1581" selection-end="1581" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FuncSys/src/enteties/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="47" selection-start="240" selection-end="240" vertical-scroll-proportion="0.2660194">
+        <state line="66" column="101" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.90019196">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -792,7 +820,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>FuncSys</last-edited>
+          <last-edited>fs</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

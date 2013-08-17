@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 /**
  * Class describes structure of a rule with
@@ -53,7 +53,7 @@ class Rule {
      * @param acceptor callback interface
      * @return true if action was performed
      *         false if not
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public void execute(IAcceptor acceptor) {
@@ -100,7 +100,7 @@ class Rule {
      *
      * @param rule rule with predicates to retrieve
      * @return common part predicates
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public PredicateSet getGeneralizedPredicates(Rule rule) throws InvalidArgumentException {
@@ -146,7 +146,7 @@ class Rule {
      * @param situation situation to match
      * @return true if situation is matched by rule
      *         false if not
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public boolean matches(PredicateSet situation)

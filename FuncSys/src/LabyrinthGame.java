@@ -1,10 +1,8 @@
-import ru.nsu.alife.fs.IAcceptor;
-import ru.nsu.alife.fs.IAction;
-import ru.nsu.alife.fs.PredicateSet;
-import sun.font.TrueTypeFont;
+import fs.IAcceptor;
+import fs.IAction;
+import fs.PredicateSet;
 
 
-import java.security.PublicKey;
 import java.util.LinkedList;
 import java.util.List;
 

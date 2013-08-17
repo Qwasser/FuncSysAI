@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,7 +24,7 @@ class EventResultSet {
      * @param result result to check
      * @return true if contains
      *         false if not
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public boolean contains(PredicateSet result) throws InvalidArgumentException {
@@ -43,7 +43,7 @@ class EventResultSet {
      * Increase occurrence if result is already in collection
      *
      * @param result result to add
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public void put(PredicateSet result) throws InvalidArgumentException {
@@ -63,7 +63,7 @@ class EventResultSet {
      *
      * @param result result to occurrence retrieve
      * @return occurrence count
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public long getOccurrence(PredicateSet result) throws InvalidArgumentException {

@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import ru.nsu.alife.fs.*;
+import fs.*;
 
 import java.util.List;
 

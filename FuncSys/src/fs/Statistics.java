@@ -1,4 +1,4 @@
-package ru.nsu.alife.fs;
+package fs;
 
 /**
  * Class describes statistic stricture
@@ -86,7 +86,7 @@ class Statistics {
      * Join another statistics to current
      *
      * @param statistics input statistics
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public void join(Statistics statistics) throws InvalidArgumentException {
@@ -107,7 +107,7 @@ class Statistics {
      *
      * @param statistics input statistics
      * @return merged statistics
-     * @throws ru.nsu.alife.fs.InvalidArgumentException
+     * @throws fs.InvalidArgumentException
      *
      */
     public Statistics merge(Statistics statistics) throws InvalidArgumentException {

@@ -1,4 +1,4 @@
-/**
+package labyrinth.game; /**
  * Created with IntelliJ IDEA.
  * User: Admin
  * Date: 13.08.13
@@ -6,7 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import labyrinth.gfx.Colours;
+import enteties.Player;
+import labyrinth.game.InputHandler;
 import labyrinth.gfx.Screen;
 import labyrinth.gfx.SpriteSheet;
 import level.Level;
@@ -34,6 +35,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
     private Screen screen;
     public InputHandler input;
     private Level level;
+    public Player player;
 
     boolean running;
     int tickCount = 0;
@@ -137,6 +139,8 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
         input = new InputHandler(this);
         level = new Level(64, 64);
+        player = new Player(level, 10, 10, input);
+        level.addEntity(player);
 
 
     }
@@ -153,19 +157,30 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
     }
 
-    private int x = 0, y = 0;
+
     public void tick()
     {
         tickCount++;
         if(input.up.isPressed)
         {
             screen.yOffset--;
+
         }
 
         if(input.down.isPressed)
         {
             screen.yOffset++;
         }
+        if(input.left.isPressed)
+        {
+            screen.xOffset--;
+        }
+
+        if(input.right.isPressed)
+        {
+            screen.xOffset++;
+        }
+
         level.tick();
     }
 
@@ -177,10 +192,10 @@ public class LabyrinthUI extends Canvas implements Runnable{
             return;
         }
 
-        int xOffset = x - (screen.width/2);
-        int yOffset = y - (screen.height/2);
+        int xOffset = player.x - (screen.width/2);
+        int yOffset = player.y - (screen.height/2);
         level.renderTile(screen, xOffset, yOffset);
-
+        level.renderEntities(screen);
         for (int y =0; y<screen.height; y++){
             for (int  x=0; x<screen.width; x++){
                 int colorCode = screen.pixels[x+y*screen.width];
