@@ -1,0 +1,44 @@
+package labyrinth.gfx;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: Admin
+ * Date: 15.08.13
+ * Time: 18:27
+ * To change this template use File | Settings | File Templates.
+ */
+public class SpriteSheet {
+    public String path;
+    public int width;
+    public int height;
+
+    public int[] pixels;
+
+    public SpriteSheet (String path) throws IOException {
+        BufferedImage image = null;
+
+        try {
+            image = ImageIO.read(SpriteSheet.class.getResourceAsStream(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (image == null){
+            return;
+        }
+
+        this.path = path;
+        this.width = image.getWidth();
+        this.height = image.getHeight();
+
+        pixels = image.getRGB(0, 0, width, height, null, 0, width);
+
+        for (int i=0; i < pixels.length; i++){
+            pixels[i] = (pixels[i] & 0xff)/64;
+        }
+    }
+}
