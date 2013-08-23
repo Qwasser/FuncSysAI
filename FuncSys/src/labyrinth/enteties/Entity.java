@@ -15,7 +15,7 @@ public abstract class Entity {
     protected Level level;
 
     public Entity(Level level){
-
+        this.level = level;
     }
 
     public final void init(Level level){

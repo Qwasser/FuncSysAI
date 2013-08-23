@@ -18,26 +18,28 @@ public class GameState {
 
     int stepNumber;
 
-    WalkerDirections walkerDirection;
+    public WalkerDirections walkerDirection;
 
     boolean isFail;
     boolean isWon;
     boolean  hasGold;
 
+    boolean  isBatteryTaken;
+
     public int getPlayerXinPixels(){
-        return (playerX-1) * 32 + 8;
+        return (playerX) * 32 + 8;
     }
 
     public int getPlayerYinPixels(){
-        return (playerY-1) * 32 + 12;
+        return (playerY) * 32 + 12;
     }
 
     public int getBatteryXinPixels(){
-        return (batteryX-1) * 32 + 7;
+        return (batteryX) * 32 + 7;
     }
 
     public int getBatteryYinPixels(){
-        return (batteryY-1) * 32 + 12;
+        return (batteryY) * 32 + 12;
     }
 
 }

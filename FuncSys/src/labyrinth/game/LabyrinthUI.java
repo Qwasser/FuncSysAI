@@ -12,6 +12,7 @@ import labyrinth.gfx.Screen;
 import labyrinth.gfx.SpriteSheet;
 import labyrinth.level.LabyrinthMap;
 import labyrinth.level.Level;
+import labyrinth.level.MapLibrary;
 import labyrinth.level.TyleType;
 
 import javax.swing.*;
@@ -39,10 +40,12 @@ public class LabyrinthUI extends Canvas implements Runnable{
     private Level level;
     public Player player;
 
+    public GameState state;
     boolean running;
     int tickCount = 0;
-    public  LabyrinthUI()
+    public  LabyrinthUI(GameState state)
     {
+        this.state = state;
 
         setMinimumSize(new Dimension(WIDTH* SCALE, HEIGHT* SCALE));
         setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -140,61 +143,12 @@ public class LabyrinthUI extends Canvas implements Runnable{
         }
 
 
-        LabyrinthMap map = new LabyrinthMap(100, 100);
-        map.setPlayerStartY(2);
-        map.setPlayerStartX(1);
-        for (int i =0; i< 100; i++){
-            for (int j =0; j< 100; j++)
-            {
-                map.setTyle(i, j, TyleType.GOLD);
-            }
-        }
-        map.setTyle(0, 0, TyleType.WALL);
-        map.setTyle(1, 0, TyleType.WALL);
-        map.setTyle(2, 0, TyleType.WALL);
-        map.setTyle(3, 0, TyleType.WALL);
-        map.setTyle(4, 0, TyleType.WALL);
-        map.setTyle(5, 0, TyleType.WALL);
-        map.setTyle(6, 0, TyleType.WALL);
 
-
-        map.setTyle(0, 1, TyleType.WALL);
-        map.setTyle(1, 1, TyleType.WALL);
-        map.setTyle(2, 1, TyleType.LAVA);
-        map.setTyle(3, 1, TyleType.WALL);
-        map.setTyle(4, 1, TyleType.LAVA);
-        map.setTyle(5, 1, TyleType.WALL);
-        map.setTyle(6, 1, TyleType.WALL);
-
-
-        map.setTyle(0, 2, TyleType.WALL);
-        map.setTyle(1, 2, TyleType.EMPTY);
-        map.setTyle(2, 2, TyleType.EMPTY);
-        map.setTyle(3, 2, TyleType.EMPTY);
-        map.setTyle(4, 2, TyleType.EMPTY);
-        map.setTyle(5, 2, TyleType.EMPTY);
-        map.setTyle(6, 2, TyleType.WALL);
-
-
-        map.setTyle(0, 3, TyleType.WALL);
-        map.setTyle(1, 3, TyleType.WALL);
-        map.setTyle(2, 3, TyleType.LAVA);
-        map.setTyle(3, 3, TyleType.WALL);
-        map.setTyle(4, 3, TyleType.LAVA);
-        map.setTyle(5, 3, TyleType.WALL);
-        map.setTyle(6, 3, TyleType.WALL);
-
-
-        map.setTyle(0, 4, TyleType.WALL);
-        map.setTyle(1, 4, TyleType.WALL);
-        map.setTyle(2, 4, TyleType.WALL);
-        map.setTyle(3, 4, TyleType.WALL);
-        map.setTyle(4, 4, TyleType.WALL);
-        map.setTyle(5, 4, TyleType.WALL);
-        map.setTyle(6, 4, TyleType.WALL);
 
         input = new InputHandler(this);
-        level = new Level(map);
+
+        level = new Level(MapLibrary.simpleMap1(), state);
+        System.out.println(this.level.state.playerX);
         Battery battery = new Battery(level, 167, 76, input);
         level.addEntity(battery);
         player = new Player(level, 72, 76, input);

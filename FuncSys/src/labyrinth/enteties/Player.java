@@ -14,7 +14,7 @@ import labyrinth.level.Level;
  */
 public class Player extends Mob {
     private final InputHandler input;
-    private int colour = Colours.get(-1, 111, 115, 510);
+    private int colour = Colours.get(-1, 000, 115, 510);
 
     int xTile = 0;
     boolean flipped = false;
@@ -33,31 +33,26 @@ public class Player extends Mob {
     //private int x = 0, y = 0;
     @Override
     public void tick() {
-        int xa = 0;
-        int ya = 0;
-        if (input.up.isPressed){
-            xTile = 2;
-            ya--;
-        }
-        if (input.down.isPressed){
-            xTile = 0;
-            ya++;
-        }
-        if (input.left.isPressed){
-            xTile = 4;
-            flipped = true;
-            xa--;
-        }
-        if (input.right.isPressed){
-            xTile = 4;
-            flipped = false;
-            xa++;
+        this.x = this.level.state.getPlayerXinPixels();
+        this.y = this.level.state.getPlayerYinPixels();
+        switch (this.level.state.walkerDirection)
+        {
+            case DOWN:
+                this.xTile = 0;
+                break;
+            case UP:
+                this.xTile = 2;
+                break;
+            case LEFT:
+                this.flipped = true;
+                this.xTile = 4;
+                break;
+            case RIGHT:
+                this.flipped = false;
+                this.xTile = 4;
+                break;
         }
 
-        if(ya!=0 || xa!=0){
-            move(xa, ya);
-
-        }
     }
 
     @Override

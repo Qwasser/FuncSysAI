@@ -29,7 +29,8 @@ public class Battery extends Mob {
 
     @Override
     public void tick() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.x = this.level.state.getBatteryXinPixels();
+        this.y = this.level.state.getBatteryYinPixels();
     }
 
     @Override

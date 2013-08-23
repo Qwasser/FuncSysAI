@@ -2,6 +2,7 @@ package labyrinth.level;
 
 import labyrinth.enteties.Entity;
 import labyrinth.enteties.Player;
+import labyrinth.game.GameState;
 import labyrinth.gfx.Screen;
 
 import java.util.ArrayList;
@@ -19,20 +20,13 @@ public class Level {
     public int width;
     public int height;
 
+    public GameState state;
     public LabyrinthMap map;
 
     public List<Entity> enteties = new ArrayList<Entity>();
 
-    public Level(int width, int height){
-        tiles = new byte[width*height];
-
-        this.width = width;
-        this.height = height;
-
-        this.generateLevel();
-    }
-
-    public Level(LabyrinthMap map){
+    public Level(LabyrinthMap map, GameState state){
+        this.state = state;
         this.width = map.width;
         this.height = map.height;
         tiles = new byte[width*height];
@@ -43,11 +37,7 @@ public class Level {
     public void generateLevel() {
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
-
                  tiles[x + y*width] = TyleType.convertToTile(map.getCellType(x, y)).getid();
-
-
-
             }
         }
     }

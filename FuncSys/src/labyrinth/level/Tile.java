@@ -12,7 +12,7 @@ import labyrinth.gfx.Screen;
  */
 public abstract class Tile {
     public static final Tile[] tiles = new Tile[256];
-    public static  final Tile VOID = new BasicTile(0, 0, 0, Colours.get(000, 345, 245, 144));
+    public static  final Tile VOID = new BasicTile(0, 0, 0, Colours.get(000, 325, 115, 555));
     public static  final Tile LAVA = new BasicTile(1, 1, 0, Colours.get(-1, 510, 520, 540));
 
     public static  final Tile WALL = new BasicTile(3, 3, 0, Colours.get(-1, 222, 333, -1));

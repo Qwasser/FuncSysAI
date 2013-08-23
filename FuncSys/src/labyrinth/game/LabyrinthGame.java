@@ -23,12 +23,23 @@ public class LabyrinthGame {
     LabyrinthWalker walker;
     GameState state;
 
-    public LabyrinthGame(LabyrinthMap map)
+    public LabyrinthGame(LabyrinthMap map, GameState state)
     {
         this.map = map;
+        this.state = state;
+        this.walker = new LabyrinthWalker(this, null);
+
         this.state.playerX = map.getPlayerStartX();
         this.state.playerY = map.getPlayerStartY();
+        this.state.batteryX = map.getBatteryStartX();
+        this.state.batteryY = map.getBatteryStartY();
+        this.state.isBatteryTaken = false;
 
+        this.state.walkerDirection = WalkerDirections.DOWN;
+
+        this.state.isFail = false;
+        this.state.isWon = false;
+        this.state.hasGold = false;
 
     }
 
@@ -208,12 +219,16 @@ public class LabyrinthGame {
         {
             case UP:
                 this.state.walkerDirection = WalkerDirections.LEFT;
+                return;
             case DOWN:
                 this.state.walkerDirection = WalkerDirections.RIGHT;
+                return;
             case LEFT:
                 this.state.walkerDirection = WalkerDirections.DOWN;
+                return;
             case RIGHT:
                 this.state.walkerDirection = WalkerDirections.UP;
+                return;
         }
     }
 
@@ -223,18 +238,38 @@ public class LabyrinthGame {
         {
             case UP:
                 this.state.walkerDirection = WalkerDirections.RIGHT;
+                return;
             case DOWN:
                 this.state.walkerDirection = WalkerDirections.LEFT;
+                return;
             case LEFT:
                 this.state.walkerDirection = WalkerDirections.UP;
+                return;
             case RIGHT:
                 this.state.walkerDirection = WalkerDirections.DOWN;
+                return;
         }
     }
 
     public void resetGame()
     {
+        this.state.playerX = map.getPlayerStartX();
+        this.state.playerY = map.getPlayerStartY();
+        this.state.batteryX = map.getBatteryStartX();
+        this.state.batteryY = map.getBatteryStartY();
+        this.state.isBatteryTaken = false;
 
+        this.state.isFail = false;
+        this.state.isWon = false;
+        this.state.hasGold = false;
+    }
+
+    public void start()
+    {
+        //System.out.println(this.state.walkerDirection);
+        this.turnLeft();
+        //System.out.println(this.state.walkerDirection);
+        this.stepForward();
 
     }
 }
