@@ -36,4 +36,6 @@ public interface IFunctionalSystem
     public Set<FunctionalSystem> getLinkToSubFS();
 
     public String getRulesToString();
+
+    public Set <Rule> getRules();
 }

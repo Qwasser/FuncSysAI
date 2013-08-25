@@ -4,6 +4,7 @@ import fs.FunctionalSystem;
 import fs.IAcceptor;
 import fs.IAction;
 import fs.PredicateSet;
+import fs.Rule;
 import labyrinth.level.LabyrinthMap;
 import labyrinth.level.TyleType;
 import labyrinth.level.WalkerDirections;
@@ -72,6 +73,11 @@ public class LabyrinthGame {
     private void setSensorPredicates(PredicateSet situation)
     {
         TyleType tyle = getUpLeftTyle();
+
+        situation.set(PredicateTable.UpLeftIsEmpty, false);
+        situation.set(PredicateTable.UpLeftIsWall, false);
+        situation.set(PredicateTable.UpLeftIsLava, false);
+
         switch (tyle)
         {
             case EMPTY:
@@ -83,11 +89,14 @@ public class LabyrinthGame {
             case LAVA:
                 situation.set(PredicateTable.UpLeftIsLava, true);
                 break;
-            case  GOLD:
-                situation.set(PredicateTable.UpLeftIsGold, true);
-                break;
         }
+
         tyle = getUpFrontTyle();
+
+        situation.set(PredicateTable.UpFrontIsEmpty, false);
+        situation.set(PredicateTable.UpFrontIsWall, false);
+        situation.set(PredicateTable.UpFrontIsLava, false);
+
         switch (tyle)
         {
             case EMPTY:
@@ -99,11 +108,14 @@ public class LabyrinthGame {
             case LAVA:
                 situation.set(PredicateTable.UpFrontIsLava, true);
                 break;
-            case  GOLD:
-                situation.set(PredicateTable.UpFrontIsGold, true);
-                break;
+
         }
         tyle = getUpRightTyle();
+
+        situation.set(PredicateTable.UpRightIsEmpty, false);
+        situation.set(PredicateTable.UpRightIsWall, false);
+        situation.set(PredicateTable.UpRightIsLava, false);
+
         switch (tyle)
         {
             case EMPTY:
@@ -115,9 +127,7 @@ public class LabyrinthGame {
             case LAVA:
                 situation.set(PredicateTable.UpRightIsLava, true);
                 break;
-            case  GOLD:
-                situation.set(PredicateTable.UpRightIsGold, true);
-                break;
+
         }
     }
 
@@ -175,6 +185,11 @@ public class LabyrinthGame {
 
     private void setSelfStatePredicates(PredicateSet situation)
     {
+        situation.set(PredicateTable.directionUp, false);
+        situation.set(PredicateTable.directionDown, false);
+        situation.set(PredicateTable.directionRight, false);
+        situation.set(PredicateTable.directionLeft, false);
+
         switch (this.state.walkerDirection)
         {
             case UP:
@@ -223,11 +238,15 @@ public class LabyrinthGame {
         {
             situation.set(PredicateTable.FoundGold, true);
         }
-
-        if (this.state.isFail)
+        else
         {
-            situation.set(PredicateTable.Dead, true);
+            situation.set(PredicateTable.FoundGold, false);
         }
+
+
+        situation.set(PredicateTable.Dead, false);
+
+
     }
 
 
@@ -359,9 +378,9 @@ public class LabyrinthGame {
 
     }
 
-    public void fsTick()
+    public void fsTick(int steps)
     {
-        for(int i = 0; i < 100; i++)
+        for(int i = 0; i < steps; i++)
         {
             this.walker.makeAction();
             this.walker.observeResult();
@@ -371,11 +390,40 @@ public class LabyrinthGame {
                 break;
             }
         }
-        System.out.println(walker.primaryFS.getRulesToString());
+
+        System.out.println("#########################################");
         System.out.println(walker.memory.toString());
+
+        for (Rule rule: walker.primaryFS.getRules())
+        {
+            System.out.println(PredicateTable.predicatesToString(rule.getPredicates()) + "Action is "+rule.getAction().toString() + " Prob is is "+rule.getProbability());
+        }
+
         Set<FunctionalSystem> set = walker.primaryFS.getLinkToSubFS();
         for (FunctionalSystem fs: set){
-            System.out.println(fs.getRulesToString());
+            System.out.println("Depth is near ******");
+            for (Rule rule: fs.getRules())
+            {
+                System.out.println(PredicateTable.predicatesToString(rule.getPredicates()) + "Action is "+rule.getAction().toString() + " Prob is is "+rule.getProbability());
+
+
+                Set<FunctionalSystem> set2 = fs.getLinkToSubFS();
+                for (FunctionalSystem fs2: set2){
+                    System.out.println("Depth is near 2222");
+                    for (Rule rule2: fs2.getRules())
+                    {
+                        System.out.println(PredicateTable.predicatesToString(rule.getPredicates()) + "Action is "+rule.getAction().toString() + " Prob is is "+rule.getProbability());
+                        System.out.println("Depth is near 2222222");
+
+
+
+
+                    }
+                }
+
+
+
+            }
         }
 
     }

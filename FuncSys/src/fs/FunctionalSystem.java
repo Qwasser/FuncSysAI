@@ -55,10 +55,10 @@ public class FunctionalSystem implements IFunctionalSystem
         PredicateSet startState = acceptor.getCurrentSituation();
 
         Rule matchingRule = null;
-        Double ruleProb = null;
+        Double ruleProb = 0.0;
         for (Rule rule: rules)
         {
-            if (rule.getPredicates().contains(startState))
+            if (rule.getPredicates().contains(startState) || startState.contains(rule.getPredicates()))
             {
                 matchingRule = rule;
                 ruleProb = rule.getProbability();
@@ -82,13 +82,43 @@ public class FunctionalSystem implements IFunctionalSystem
             }
         }
 
+        else
+        {
+            probabilityTable.put(startState, new HashMap<FunctionalSystem, Statistics>());
+        }
+
         IAction action = null;
 
         if (matchingRule == null && bestFS == null)
         {
-            action = acceptor.getRandomAction();
-            action.doAction();
-            acceptor.getMemory().isRandom = Boolean.TRUE;
+            Random random = new Random();
+            boolean choice = random.nextBoolean();
+            if (choice || this.rulesToFs.keySet().size() < 1)
+            {
+                action = acceptor.getRandomAction();
+                action.doAction();
+                acceptor.getMemory().isRandom = Boolean.TRUE;
+            }
+            else
+            {
+                int size = this.rulesToFs.keySet().size();
+                int fsNumber = random.nextInt(size);
+                int i = 0;
+                for (FunctionalSystem fs: this.rulesToFs.keySet())
+                {
+                    if (i == fsNumber)
+                    {
+                        if(this.probabilityTable.get(startState) == null)
+                        {
+                            this.probabilityTable.put(startState, new HashMap<FunctionalSystem, Statistics>());
+                        }
+                        this.probabilityTable.get(startState).put(fs, new Statistics());
+                        fs.performAction(acceptor);
+                        return;
+                    }
+                    i++;
+                }
+            }
         }
         else if (matchingRule == null && bestFSProb == 0.0)
         {
@@ -145,7 +175,7 @@ public class FunctionalSystem implements IFunctionalSystem
             {
                 if (!this.rulesToFs.containsValue(rule) && this.depth > 0)
                 {
-                    FunctionalSystem fs = this.createSubFS(rule.getPredicates(), this, acceptor);
+                    FunctionalSystem fs = acceptor.getMemory().lastFs.createSubFS(rule.getPredicates(), acceptor.getMemory().lastFs, acceptor);
                     this.rulesToFs.put(fs, rule);
                 }
             }
@@ -180,6 +210,7 @@ public class FunctionalSystem implements IFunctionalSystem
 
     private void updateFS(IAcceptor acceptor)
     {
+
         Rule ruleToUpdate = null;
         for (Rule rule: rules)
         {
@@ -216,10 +247,14 @@ public class FunctionalSystem implements IFunctionalSystem
             FunctionalSystem fs = this;
             while (fs.parentFs != null)
             {
+
+                if(fs.parentFs.probabilityTable.containsKey(acceptor.getMemory().initialSituation))
+                {
+                    subProbabilities = fs.parentFs.probabilityTable.get(acceptor.getMemory().initialSituation);
+                    stats = subProbabilities.get(fs);
+                    stats.addTestResult(Boolean.FALSE);
+                }
                 fs = fs.parentFs;
-                subProbabilities = fs.parentFs.probabilityTable.get(acceptor.getMemory().initialSituation);
-                stats = subProbabilities.get(this);
-                stats.addTestResult(Boolean.FALSE);
             }
         }
     }
@@ -323,5 +358,10 @@ public class FunctionalSystem implements IFunctionalSystem
     public Set <FunctionalSystem> getLinkToSubFS()
     {
         return this.rulesToFs.keySet();
+    }
+
+    public Set <Rule> getRules()
+    {
+        return this.rules;
     }
 }

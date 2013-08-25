@@ -29,6 +29,7 @@ public class GeneralUI {
     JButton goButton;
     JButton grabButton;
     JButton fsButton;
+    JButton fs100Button;
     JButton resetButton;
 
     ActionListener buttonListener;
@@ -75,18 +76,21 @@ public class GeneralUI {
         goButton = new JButton("Go");
         grabButton = new JButton("Grab");
         fsButton = new JButton("FS step");
+        fs100Button = new JButton("FS 100 steps");
         resetButton = new JButton("Reset");
 
         turnButton.addActionListener(buttonListener);
         goButton.addActionListener(buttonListener);
         grabButton.addActionListener(buttonListener);
         fsButton.addActionListener(buttonListener);
+        fs100Button.addActionListener(buttonListener);
         resetButton.addActionListener(buttonListener);
 
         this.buttonPanel.add(turnButton, BorderLayout.CENTER);
         this.buttonPanel.add(goButton, BorderLayout.CENTER);
         this.buttonPanel.add(grabButton, BorderLayout.CENTER);
         this.buttonPanel.add(fsButton , BorderLayout.CENTER);
+        this.buttonPanel.add(fs100Button , BorderLayout.CENTER);
         this.buttonPanel.add(resetButton , BorderLayout.CENTER);
     }
 
@@ -106,7 +110,11 @@ public class GeneralUI {
         }
         if (e.getSource() == this.fsButton)
         {
-            this.game.fsTick();
+            this.game.fsTick(1);
+        }
+        if (e.getSource() == this.fs100Button)
+        {
+            this.game.fsTick(100);
         }
         if (e.getSource() == this.resetButton)
         {

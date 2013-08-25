@@ -48,7 +48,6 @@ class LabyrinthWalker extends IAcceptor {
     public IAction getRandomAction() {
         List<IAction> actions = labyrinth.getPossibleActionsForAnimate(this);
         IAction action = actions.get((int) (Math.random() * actions.size()));
-        System.out.println(actions.size());
         return action;
     }
 

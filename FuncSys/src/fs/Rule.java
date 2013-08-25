@@ -6,7 +6,7 @@ package fs;
  * and an ordered list of sub-goals that should be reached
  * before performing action
  */
-class Rule {
+public class Rule {
     private static final String TAG = Rule.class.getName();
 
     /**
