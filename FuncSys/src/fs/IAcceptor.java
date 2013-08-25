@@ -37,9 +37,29 @@ public abstract class IAcceptor
         public Boolean isRandom;
 
         public PredicateSet initialSituation;
+
+        @Override
+        public String toString()
+        {
+            String str = "";
+            str = str.concat("Last action was ");
+            str = str.concat(memory.lastAction.toString() + ". ");
+            str = str.concat("Last fs depth: " + memory.lastFs.depth);
+            str = str.concat(" Was random: " + memory.isRandom);
+            return str;
+        }
     }
 
-    ShortMemory memory;
+    public ShortMemory memory;
+
+    ShortMemory getMemory()
+    {
+        if( memory == null )
+            memory = new ShortMemory();
+        return memory;
+    }
+
+
 
     History getHistoryInstance()
 	{

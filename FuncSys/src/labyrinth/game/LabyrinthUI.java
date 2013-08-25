@@ -23,9 +23,6 @@ import java.awt.image.DataBufferInt;
 import java.io.IOException;
 
 public class LabyrinthUI extends Canvas implements Runnable{
-    JFrame mainFrame;
-    JTabbedPane tabbedPane;
-
     public static final int WIDTH = 160;
     public static final int HEIGHT = WIDTH/12*9;
     public static final int SCALE = 3;
@@ -39,32 +36,20 @@ public class LabyrinthUI extends Canvas implements Runnable{
     public InputHandler input;
     private Level level;
     public Player player;
+    public LabyrinthMap map;
 
     public GameState state;
     boolean running;
     int tickCount = 0;
-    public  LabyrinthUI(GameState state)
+    public  LabyrinthUI(GameState state, LabyrinthMap map)
     {
         this.state = state;
+        this.map = map;
 
         setMinimumSize(new Dimension(WIDTH* SCALE, HEIGHT* SCALE));
         setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-        mainFrame = new JFrame(NAME);
-        //tabbedPane = new JTabbedPane();
-
-        //mainFrame.setLayout(new BorderLayout());
-
-        //tabbedPane.add("Labyrinth", this);
-        //JComponent panel2 = new JPanel();
-        //tabbedPane.add("Functional System", panel2);
-
-        mainFrame.add(this, BorderLayout.CENTER);
-        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainFrame.pack();
-        mainFrame.setResizable(false);
-        mainFrame.setVisible(true);
     }
 
     @Override
@@ -147,7 +132,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
         input = new InputHandler(this);
 
-        level = new Level(MapLibrary.simpleMap1(), state);
+        level = new Level(map, state);
         System.out.println(this.level.state.playerX);
         Battery battery = new Battery(level, 167, 76, input);
         level.addEntity(battery);
@@ -208,7 +193,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
         int xOffset = player.x - (screen.width/2);
         int yOffset = player.y - (screen.height/2);
-        level.renderTile(screen, xOffset, yOffset);
+        level.renderTile(screen, screen.xOffset, screen.yOffset);
         level.renderEntities(screen);
         for (int y =0; y<screen.height; y++){
             for (int  x=0; x<screen.width; x++){

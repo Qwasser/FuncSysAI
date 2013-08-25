@@ -26,6 +26,10 @@ public class GameState {
 
     boolean  isBatteryTaken;
 
+    public boolean isTaken(){
+        return this.isBatteryTaken;
+    }
+
     public int getPlayerXinPixels(){
         return (playerX) * 32 + 8;
     }

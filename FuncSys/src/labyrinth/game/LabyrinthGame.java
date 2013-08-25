@@ -1,5 +1,6 @@
 package labyrinth.game;
 
+import fs.FunctionalSystem;
 import fs.IAcceptor;
 import fs.IAction;
 import fs.PredicateSet;
@@ -10,6 +11,7 @@ import labyrinth.level.WalkerDirections;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,7 +29,10 @@ public class LabyrinthGame {
     {
         this.map = map;
         this.state = state;
-        this.walker = new LabyrinthWalker(this, null);
+
+        PredicateSet goal = new PredicateSet();
+        goal.set(PredicateTable.FoundGold, true);
+        this.walker = new LabyrinthWalker(this, goal);
 
         this.state.playerX = map.getPlayerStartX();
         this.state.playerY = map.getPlayerStartY();
@@ -71,36 +76,48 @@ public class LabyrinthGame {
         {
             case EMPTY:
                 situation.set(PredicateTable.UpLeftIsEmpty, true);
+                break;
             case WALL:
                 situation.set(PredicateTable.UpLeftIsWall, true);
+                break;
             case LAVA:
                 situation.set(PredicateTable.UpLeftIsLava, true);
+                break;
             case  GOLD:
                 situation.set(PredicateTable.UpLeftIsGold, true);
+                break;
         }
         tyle = getUpFrontTyle();
         switch (tyle)
         {
             case EMPTY:
                 situation.set(PredicateTable.UpFrontIsEmpty, true);
+                break;
             case WALL:
                 situation.set(PredicateTable.UpFrontIsWall, true);
+                break;
             case LAVA:
                 situation.set(PredicateTable.UpFrontIsLava, true);
+                break;
             case  GOLD:
                 situation.set(PredicateTable.UpFrontIsGold, true);
+                break;
         }
         tyle = getUpRightTyle();
         switch (tyle)
         {
             case EMPTY:
                 situation.set(PredicateTable.UpRightIsEmpty, true);
+                break;
             case WALL:
                 situation.set(PredicateTable.UpRightIsWall, true);
+                break;
             case LAVA:
                 situation.set(PredicateTable.UpRightIsLava, true);
+                break;
             case  GOLD:
                 situation.set(PredicateTable.UpRightIsGold, true);
+                break;
         }
     }
 
@@ -110,12 +127,16 @@ public class LabyrinthGame {
         {
             case UP:
                 return map.getCellType(state.playerX - 1, state.playerY - 1);
+
             case DOWN:
                 return map.getCellType(state.playerX + 1, state.playerY + 1);
+
             case LEFT:
                 return map.getCellType(state.playerX - 1, state.playerY + 1);
+
             case RIGHT:
                 return map.getCellType(state.playerX + 1, state.playerY - 1);
+
         }
         return TyleType.WALL;
     }
@@ -158,13 +179,42 @@ public class LabyrinthGame {
         {
             case UP:
                 situation.set(PredicateTable.directionUp, true);
+                break;
             case DOWN:
                 situation.set(PredicateTable.directionDown, true);
+                break;
             case LEFT:
                 situation.set(PredicateTable.directionLeft, true);
+                break;
             case RIGHT:
                 situation.set(PredicateTable.directionRight, true);
+                break;
         }
+
+        int x = 0, y = 0;
+        switch (this.state.walkerDirection)
+        {
+            case UP:
+                x = state.playerX;
+                y = state.playerY - 1;
+                break;
+            case DOWN:
+                x = state.playerX;
+                y = state.playerY + 1;
+                break;
+            case LEFT:
+                x = state.playerX - 1;
+                y = state.playerY;
+                break;
+            case RIGHT:
+                x = state.playerX + 1;
+                y = state.playerY;
+                break;
+        }
+        if (x == state.batteryX && y == state.batteryY)
+            situation.set(PredicateTable.SeeBattery, true);
+        else
+            situation.set(PredicateTable.SeeBattery, false);
     }
 
     private void setGameState(PredicateSet situation)
@@ -188,28 +238,57 @@ public class LabyrinthGame {
     public void stepForward()
     {
         TyleType frontTyle = this.getUpFrontTyle();
+        if (frontTyle == TyleType.LAVA)
+        {
+            this.state.isFail = true;
+        }
         if (frontTyle != TyleType.WALL)
         {
             switch (this.state.walkerDirection)
             {
                 case UP:
                     state.playerY =  state.playerY - 1;
+                    break;
                 case DOWN:
                     state.playerY =  state.playerY + 1;
+                    break;
                 case LEFT:
                     state.playerX =  state.playerX - 1;
+                    break;
                 case RIGHT:
                     state.playerX =  state.playerX + 1;
+                    break;
             }
         }
     }
 
     public void grabGold()
     {
-        if (map.getCellType(state.playerX, state.playerY) == TyleType.GOLD)
+        int x = 0, y = 0;
+        switch (this.state.walkerDirection)
+        {
+            case UP:
+                x = state.playerX;
+                y = state.playerY - 1;
+                break;
+            case DOWN:
+                x = state.playerX;
+                y = state.playerY + 1;
+                break;
+            case LEFT:
+                x = state.playerX - 1;
+                y = state.playerY;
+                break;
+            case RIGHT:
+                x = state.playerX + 1;
+                y = state.playerY;
+                break;
+        }
+        if (x == state.batteryX && y == state.batteryY && !state.isBatteryTaken)
         {
             state.hasGold = true;
-            map.setTyle(state.playerX, state.playerY, TyleType.EMPTY);
+            state.isBatteryTaken = true;
+            state.isWon = true;
         }
     }
 
@@ -262,6 +341,8 @@ public class LabyrinthGame {
         this.state.isFail = false;
         this.state.isWon = false;
         this.state.hasGold = false;
+
+        this.state.walkerDirection = WalkerDirections.RIGHT;
     }
 
     public void start()
@@ -270,6 +351,32 @@ public class LabyrinthGame {
         this.turnLeft();
         //System.out.println(this.state.walkerDirection);
         this.stepForward();
+        this.stepForward();
+        this.stepForward();
+        this.stepForward();
+        this.grabGold();
+        this.turnRight();
+
+    }
+
+    public void fsTick()
+    {
+        for(int i = 0; i < 100; i++)
+        {
+            this.walker.makeAction();
+            this.walker.observeResult();
+
+            if (this.state.isWon)
+            {
+                break;
+            }
+        }
+        System.out.println(walker.primaryFS.getRulesToString());
+        System.out.println(walker.memory.toString());
+        Set<FunctionalSystem> set = walker.primaryFS.getLinkToSubFS();
+        for (FunctionalSystem fs: set){
+            System.out.println(fs.getRulesToString());
+        }
 
     }
 }

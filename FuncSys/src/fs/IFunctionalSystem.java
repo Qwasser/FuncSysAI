@@ -1,5 +1,8 @@
 package fs;
 
+import java.util.HashMap;
+import java.util.Set;
+
 /**
  * Interface for FS Used to fast switch between Fake and Real FS'
  */
@@ -29,4 +32,8 @@ public interface IFunctionalSystem
      * @return root element of created tree
      */
     public RuleTreeNode getRuleTreeRoot();
+
+    public Set<FunctionalSystem> getLinkToSubFS();
+
+    public String getRulesToString();
 }

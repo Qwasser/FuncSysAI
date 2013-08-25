@@ -1,3 +1,4 @@
+import labyrinth.GeneralUI;
 import labyrinth.game.GameState;
 import labyrinth.game.LabyrinthGame;
 import labyrinth.game.LabyrinthUI;
@@ -16,13 +17,7 @@ public class NewGame {
 
     public static void main(String[] args)
     {
-        GameState state = new GameState();
-        LabyrinthMap map = MapLibrary.simpleMap1();
-        LabyrinthGame game = new LabyrinthGame(map, state);
-
-        //System.out.println(state.getPlayerXinPixels());
-        new LabyrinthUI(state).start();
-        game.start();
+        GeneralUI ui = new GeneralUI();
 
     }
 }

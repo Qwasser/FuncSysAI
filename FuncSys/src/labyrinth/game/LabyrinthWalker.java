@@ -24,6 +24,15 @@ class LabyrinthWalker extends IAcceptor {
         primaryFS = (IFunctionalSystem) new FunctionalSystem(goal, 3);
     }
 
+    public void makeAction()
+    {
+        this.primaryFS.performAction(this);
+    }
+
+    public void observeResult()
+    {
+        this.primaryFS.seeResult(this);
+    }
 
     @Override
     public PredicateSet getCurrentSituation() {
@@ -39,6 +48,7 @@ class LabyrinthWalker extends IAcceptor {
     public IAction getRandomAction() {
         List<IAction> actions = labyrinth.getPossibleActionsForAnimate(this);
         IAction action = actions.get((int) (Math.random() * actions.size()));
+        System.out.println(actions.size());
         return action;
     }
 
@@ -48,6 +58,10 @@ class LabyrinthWalker extends IAcceptor {
             labyrinth.stepForward();
             return true;
         }
+        @Override
+        public String toString() {
+            return "Step" ;
+        }
     };
 
     public final IAction grabGold = new IAction() {
@@ -55,6 +69,11 @@ class LabyrinthWalker extends IAcceptor {
         public boolean doAction() {
             labyrinth.grabGold();
             return true;
+        }
+
+        @Override
+        public String toString() {
+            return "Grab" ;
         }
     };
 
@@ -64,6 +83,10 @@ class LabyrinthWalker extends IAcceptor {
             labyrinth.turnLeft();
             return true;
         }
+        @Override
+        public String toString() {
+            return "Left" ;
+        }
     };
 
     public final IAction turnRight = new IAction() {
@@ -71,6 +94,11 @@ class LabyrinthWalker extends IAcceptor {
         public boolean doAction() {
             labyrinth.turnRight();
             return true;
+        }
+
+        @Override
+        public String toString() {
+            return "Right" ;
         }
     };
 }

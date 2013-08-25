@@ -35,21 +35,24 @@ public class Battery extends Mob {
 
     @Override
     public void render(Screen screen) {
-        int yTile = 2;
-        int xTile = 6;
+        if(!this.level.state.isTaken())
+        {
+            int yTile = 2;
+            int xTile = 6;
 
-        int scale = 2;
-        int modifier = 8 * scale;
+            int scale = 2;
+            int modifier = 8 * scale;
 
-        int xOffset = x - modifier/2;
-        int yOffset = y - modifier/2 - 4;
+            int xOffset = x - modifier/2;
+            int yOffset = y - modifier/2 - 4;
 
 
-        screen.render(xOffset , yOffset, xTile + yTile*32, colour, false, false, scale);
-        //System.out.println("renders");
-        screen.render(xOffset + modifier, yOffset, xTile + 1 + yTile*32, colour, false, false,  scale);
-        screen.render(xOffset, yOffset + modifier, xTile + (1 + yTile)*32, colour, false, false, scale);
-        screen.render(xOffset + modifier, yOffset + modifier, xTile + 1 + (yTile+1)*32, colour, false, false, scale);
+            screen.render(xOffset , yOffset, xTile + yTile*32, colour, false, false, scale);
+            //System.out.println("renders");
+            screen.render(xOffset + modifier, yOffset, xTile + 1 + yTile*32, colour, false, false,  scale);
+            screen.render(xOffset, yOffset + modifier, xTile + (1 + yTile)*32, colour, false, false, scale);
+            screen.render(xOffset + modifier, yOffset + modifier, xTile + 1 + (yTile+1)*32, colour, false, false, scale);
+        }
 
     }
 }
