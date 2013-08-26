@@ -393,7 +393,7 @@ public class LabyrinthGame {
 
         System.out.println("#########################################");
         System.out.println(walker.memory.toString());
-
+        System.out.println(walker.primaryFS.probTableToString());
         for (Rule rule: walker.primaryFS.getRules())
         {
             System.out.println(PredicateTable.predicatesToString(rule.getPredicates()) + "Action is "+rule.getAction().toString() + " Prob is is "+rule.getProbability());
@@ -401,30 +401,20 @@ public class LabyrinthGame {
 
         Set<FunctionalSystem> set = walker.primaryFS.getLinkToSubFS();
         for (FunctionalSystem fs: set){
-            System.out.println("Depth is near ******");
+            System.out.println("Depth is near 1");
             for (Rule rule: fs.getRules())
             {
                 System.out.println(PredicateTable.predicatesToString(rule.getPredicates()) + "Action is "+rule.getAction().toString() + " Prob is is "+rule.getProbability());
 
-
                 Set<FunctionalSystem> set2 = fs.getLinkToSubFS();
                 for (FunctionalSystem fs2: set2){
-                    System.out.println("Depth is near 2222");
+                    System.out.println("Depth is near 0");
                     for (Rule rule2: fs2.getRules())
                     {
-                        System.out.println(PredicateTable.predicatesToString(rule.getPredicates()) + "Action is "+rule.getAction().toString() + " Prob is is "+rule.getProbability());
-                        System.out.println("Depth is near 2222222");
-
-
-
-
+                        System.out.println(PredicateTable.predicatesToString(rule2.getPredicates()) + "Action is "+rule2.getAction().toString() + " Prob is is "+rule2.getProbability());
                     }
                 }
-
-
-
             }
         }
-
     }
 }

@@ -38,4 +38,5 @@ public interface IFunctionalSystem
     public String getRulesToString();
 
     public Set <Rule> getRules();
+    public String probTableToString();
 }

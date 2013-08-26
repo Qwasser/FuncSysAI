@@ -1,5 +1,6 @@
 package fs;
 
+import java.text.AttributedString;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -52,12 +53,15 @@ public class FunctionalSystem implements IFunctionalSystem
     @Override
     public void performAction(IAcceptor acceptor) {
 
+        // Observe situation
         PredicateSet startState = acceptor.getCurrentSituation();
 
+        // Choose the most suitable rule
         Rule matchingRule = null;
         Double ruleProb = 0.0;
         for (Rule rule: rules)
         {
+            // It is really an equality condition now
             if (rule.getPredicates().contains(startState) || startState.contains(rule.getPredicates()))
             {
                 matchingRule = rule;
@@ -66,53 +70,61 @@ public class FunctionalSystem implements IFunctionalSystem
             }
         }
 
-        Double bestFSProb = 0.0;
-        FunctionalSystem bestFS = null;
-        if (probabilityTable.containsKey(startState))
-        {
-            HashMap<FunctionalSystem, Statistics> subProbabilities = probabilityTable.get(startState);
-            for (FunctionalSystem subFs: subProbabilities.keySet())
-            {
-                Statistics prob = subProbabilities.get(subFs);
-                if (prob.calcProbability()* this.rulesToFs.get(subFs).getProbability() > bestFSProb)
-                {
-                    bestFSProb = prob.calcProbability() * this.rulesToFs.get(subFs).getProbability();
-                    bestFS = subFs;
-                }
-            }
-        }
-
-        else
+        // Create row in probTable for current situation
+        if(!probabilityTable.containsKey(startState))
         {
             probabilityTable.put(startState, new HashMap<FunctionalSystem, Statistics>());
         }
 
-        IAction action = null;
+        // Choose the most suitable fs
+        Double bestFSProb = 0.0;
+        FunctionalSystem bestFS = null;
 
-        if (matchingRule == null && bestFS == null)
+        HashMap<FunctionalSystem, Statistics> subProbabilities = probabilityTable.get(startState);
+        for (FunctionalSystem subFs: subProbabilities.keySet())
+        {
+            Statistics prob = subProbabilities.get(subFs);
+            if (prob.calcProbability()* this.rulesToFs.get(subFs).getProbability() > bestFSProb)
+            {
+                //Total probability of reaching main goal
+                bestFSProb = prob.calcProbability() * this.rulesToFs.get(subFs).getProbability();
+                bestFS = subFs;
+            }
+        }
+
+        //Choose action or subfs
+        IAction action = null;
+        if (ruleProb >= bestFSProb && ruleProb > 0.0)
+        {
+            action = matchingRule.getAction();
+            acceptor.getMemory().isRandom = false;
+        }
+        else if (bestFSProb > ruleProb)
+        {
+            bestFS.performAction(acceptor);
+            return;
+        }
+        else
         {
             Random random = new Random();
-            boolean choice = random.nextBoolean();
-            if (choice || this.rulesToFs.keySet().size() < 1)
+            int choice = random.nextInt(10);
+            if (choice < 2 || this.rulesToFs.keySet().size() == 0)
             {
                 action = acceptor.getRandomAction();
-                action.doAction();
-                acceptor.getMemory().isRandom = Boolean.TRUE;
+                acceptor.getMemory().isRandom = true;
             }
             else
             {
-                int size = this.rulesToFs.keySet().size();
-                int fsNumber = random.nextInt(size);
+                choice = random.nextInt(this.rulesToFs.keySet().size());
                 int i = 0;
                 for (FunctionalSystem fs: this.rulesToFs.keySet())
                 {
-                    if (i == fsNumber)
+                    if (i == choice)
                     {
-                        if(this.probabilityTable.get(startState) == null)
+                        if (!this.probabilityTable.get(startState).containsKey(fs))
                         {
-                            this.probabilityTable.put(startState, new HashMap<FunctionalSystem, Statistics>());
+                            this.probabilityTable.get(startState).put(fs, new Statistics());
                         }
-                        this.probabilityTable.get(startState).put(fs, new Statistics());
                         fs.performAction(acceptor);
                         return;
                     }
@@ -120,39 +132,8 @@ public class FunctionalSystem implements IFunctionalSystem
                 }
             }
         }
-        else if (matchingRule == null && bestFSProb == 0.0)
-        {
-            Random random = new Random();
-            int item = random.nextInt(this.rulesToFs.keySet().size());
-            for (int i =0; i < item; i++)
-            {
-                bestFS =  this.rulesToFs.keySet().iterator().next();
-            }
-            if (!this.probabilityTable.containsKey(startState))
-            {
-                this.probabilityTable.put(startState, new HashMap<FunctionalSystem, Statistics>());
-            }
-            bestFS.performAction(acceptor);
-            return;
-        }
 
-        else if (ruleProb >= bestFSProb)
-        {
-            action = matchingRule.getAction();
-            action.doAction();
-            acceptor.getMemory().isRandom = Boolean.FALSE;
-        }
-
-        else
-        {
-            if (!this.probabilityTable.containsKey(startState))
-            {
-                this.probabilityTable.put(startState, new HashMap<FunctionalSystem, Statistics>());
-            }
-            bestFS.performAction(acceptor);
-            return;
-        }
-
+        acceptor.performAction(action);
         acceptor.getMemory().lastFs = this;
         acceptor.getMemory().lastAction = action;
         acceptor.getMemory().initialSituation = startState;
@@ -162,22 +143,32 @@ public class FunctionalSystem implements IFunctionalSystem
     public void seeResult(IAcceptor acceptor) {
         PredicateSet endState = acceptor.getCurrentSituation();
         History history = acceptor.getHistoryInstance();
+        // Memorize an event
         history.addEvent(acceptor.getMemory().initialSituation, acceptor.getMemory().lastAction, endState);
         if (!acceptor.getMemory().isRandom)
         {
+            // If an action was not random
             acceptor.getMemory().lastFs.updateFS(acceptor);
         }
         else
         {
-            acceptor.getMemory().lastFs.addRule(acceptor, endState);
+            // If an action was random
 
-            for (Rule rule: rules)
+            FunctionalSystem lastFs = acceptor.getMemory().lastFs;
+            lastFs.addRule(acceptor, endState);
+
+            for (Rule rule: lastFs.rules)
             {
-                if (!this.rulesToFs.containsValue(rule) && this.depth > 0)
+                if (!lastFs.rulesToFs.containsValue(rule) && lastFs.depth > 0)
                 {
-                    FunctionalSystem fs = acceptor.getMemory().lastFs.createSubFS(rule.getPredicates(), acceptor.getMemory().lastFs, acceptor);
-                    this.rulesToFs.put(fs, rule);
+                    FunctionalSystem fs = lastFs.createSubFS(rule.getPredicates(), acceptor.getMemory().lastFs, acceptor);
+                    acceptor.getMemory().lastFs.rulesToFs.put(fs, rule);
                 }
+            }
+
+            if( endState.contains( lastFs.goal ) || (lastFs.goal.contains(endState)))
+            {
+                acceptor.getMemory().lastFs.updateFS(acceptor);
             }
 
         }
@@ -196,7 +187,7 @@ public class FunctionalSystem implements IFunctionalSystem
 
         History history = acceptor.getHistoryInstance();
 
-        if( endSituation.contains( this.goal ) )
+        if( endSituation.contains( this.goal ) || (this.goal.contains(endSituation)))
         {
             Statistics statistics = history.getStatistics( startSituation,
                     action, endSituation );
@@ -205,6 +196,7 @@ public class FunctionalSystem implements IFunctionalSystem
                 Rule rule = new Rule( startSituation, action, statistics );
                 rules.add( rule );
             }
+            //acceptor.getMemory().lastFs.updateFS(acceptor);
         }
     }
 
@@ -363,5 +355,20 @@ public class FunctionalSystem implements IFunctionalSystem
     public Set <Rule> getRules()
     {
         return this.rules;
+    }
+
+    public String probTableToString(){
+        String str = "";
+        for (PredicateSet situation: this.probabilityTable.keySet())
+        {
+            str = str.concat(" " + situation.toString());
+            HashMap<FunctionalSystem, Statistics> probs = probabilityTable.get(situation);
+            for (FunctionalSystem fs: probs.keySet())
+            {
+                str = str.concat(" " + probs.get(fs).calcProbability());
+            }
+
+        }
+        return str;
     }
 }
