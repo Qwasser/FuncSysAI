@@ -9,7 +9,7 @@
     <file path="$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Colour.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376634834264" ignored="false" />
     <file path="/Colours.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376635383304" ignored="false" />
     <file path="/Screen.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376762613997" ignored="false" />
-    <file path="/LabyrinthGame.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377511566469" ignored="false" />
+    <file path="/LabyrinthGame.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377623098129" ignored="false" />
     <file path="/Font.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376645758519" ignored="false" />
     <file path="/Level.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377188990017" ignored="false" />
     <file path="/Tile.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1376903780107" ignored="false" />
@@ -25,14 +25,14 @@
     <file path="/LabyrinthMap.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377102407606" ignored="false" />
     <file path="/Battery.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377253641126" ignored="false" />
     <file path="/GameState.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377253635273" ignored="false" />
-    <file path="/MapLibrary.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377182366387" ignored="false" />
+    <file path="/MapLibrary.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377606466714" ignored="false" />
     <file path="/Walker.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377183070178" ignored="false" />
     <file path="/GeneralUI.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377265797479" ignored="false" />
     <file path="/LabyrinthWalker.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377268718278" ignored="false" />
-    <file path="/FunctionalSystem.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377521669174" ignored="false" />
+    <file path="/FunctionalSystem.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377622972436" ignored="false" />
     <file path="/IFunctionalSystem.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377439294529" ignored="false" />
     <file path="/PredicateTable.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377438661597" ignored="false" />
-    <file path="/Rule.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377439399268" ignored="false" />
+    <file path="/Rule.java" changelist="96812c42-55a0-44eb-a72f-ae12e948ab98" time="1377622744083" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +47,22 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/FuncSys/src/fs/IAcceptor.java" line="48" class="fs.IAcceptor.ShortMemory" package="fs">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -81,22 +97,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/FuncSys/src/fs/IAcceptor.java" line="48" class="fs.IAcceptor.ShortMemory" package="fs">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
@@ -107,19 +107,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FunctionalSystem.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/FunctionalSystem.java">
+      <file leaf-file-name="LabyrinthGame.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="203" column="101" selection-start="6751" selection-end="6751" vertical-scroll-proportion="0.0">
+            <state line="422" column="13" selection-start="12559" selection-end="12559" vertical-scroll-proportion="0.89805096">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Battery.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/enteties/Battery.java">
+      <file leaf-file-name="FunctionalSystem.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/FunctionalSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0">
+            <state line="102" column="63" selection-start="3308" selection-end="3308" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#9922#9930#0" expanded="true" />
+                <element signature="e#10670#10676#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasicTile.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/level/BasicTile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="13" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WalkerDirections.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/level/WalkerDirections.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="12" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PredicateTable.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/PredicateTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="13" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -128,34 +159,16 @@
       <file leaf-file-name="Rule.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/Rule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0">
+            <state line="82" column="29" selection-start="2248" selection-end="2248" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PredicateSet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/PredicateSet.java">
+      <file leaf-file-name="IAcceptor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/IAcceptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InvalidArgumentException.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/InvalidArgumentException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="13" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProtectionDomain.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/security/ProtectionDomain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="0" selection-start="2385" selection-end="2385" vertical-scroll-proportion="0.0">
+            <state line="9" column="22" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -164,7 +177,7 @@
       <file leaf-file-name="IFunctionalSystem.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/IFunctionalSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="38" selection-start="931" selection-end="931" vertical-scroll-proportion="0.0">
+            <state line="8" column="17" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -173,25 +186,16 @@
       <file leaf-file-name="LabyrinthUI.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="51" selection-start="3361" selection-end="3361" vertical-scroll-proportion="0.0">
+            <state line="49" column="67" selection-start="1563" selection-end="1563" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LabyrinthGame.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthGame.java">
+      <file leaf-file-name="LabyrinthWalker.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthWalker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="66" selection-start="1101" selection-end="1101" vertical-scroll-proportion="-8.827328">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameState.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/GameState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0">
+            <state line="43" column="40" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -208,21 +212,21 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/level/Tile.java" />
-        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/level/MapLibrary.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/enteties/Player.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/game/GameState.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/enteties/Battery.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/NewGame.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/fs/History.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/fs/IAcceptor.java" />
-        <option value="$PROJECT_DIR$/FuncSys/src/fs/Rule.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/game/PredicateTable.java" />
-        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthUI.java" />
-        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/GeneralUI.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/fs/IFunctionalSystem.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/GeneralUI.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/level/MapLibrary.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthWalker.java" />
-        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthGame.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthUI.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/fs/Rule.java" />
         <option value="$PROJECT_DIR$/FuncSys/src/fs/FunctionalSystem.java" />
+        <option value="$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthGame.java" />
       </list>
     </option>
   </component>
@@ -258,6 +262,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -440,8 +446,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -459,9 +463,9 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RunManager" selected="Application.NewGame">
     <configuration default="false" name="NewGame" type="Application" factoryName="Application" temporary="true">
@@ -500,6 +504,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -525,19 +542,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -635,8 +639,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -651,8 +655,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14727855" sideWeight="0.76974416" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23025584" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14727855" sideWeight="0.7708565" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22914349" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -725,72 +729,16 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/GeneralUI.java">
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/InvalidArgumentException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="55" selection-start="2983" selection-end="2983" vertical-scroll-proportion="0.0">
+        <state line="2" column="13" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/util/Random.java">
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/enteties/Mob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="299" column="0" selection-start="11657" selection-end="11657" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/gfx/Font.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/History.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="6" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/enteties/Walker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthWalker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="68" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/GameState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/security/ProtectionDomain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="0" selection-start="2385" selection-end="2385" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="51" selection-start="3361" selection-end="3361" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/Rule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0">
+        <state line="11" column="22" selection-start="234" selection-end="234" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -802,37 +750,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/RuleTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="79" selection-end="79" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/Statistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="6" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/IAcceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="22" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/IFunctionalSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="38" selection-start="931" selection-end="931" vertical-scroll-proportion="0.0">
+        <state line="8" column="17" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/Rule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="29" selection-start="2248" selection-end="2248" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/FunctionalSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="203" column="101" selection-start="6751" selection-end="6751" vertical-scroll-proportion="0.0">
+        <state line="102" column="63" selection-start="3308" selection-end="3308" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9922#9930#0" expanded="true" />
+            <element signature="e#10670#10676#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/level/BasicTile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/enteties/Battery.java">
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/level/WalkerDirections.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0">
+        <state line="9" column="12" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FuncSys/src/fs/InvalidArgumentException.java">
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/PredicateTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0">
+        <state line="13" column="13" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="67" selection-start="1563" selection-end="1563" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthWalker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="40" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FuncSys/src/labyrinth/game/LabyrinthGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="66" selection-start="1101" selection-end="1101" vertical-scroll-proportion="-8.827328">
+        <state line="422" column="13" selection-start="12559" selection-end="12559" vertical-scroll-proportion="0.89805096">
           <folding />
         </state>
       </provider>

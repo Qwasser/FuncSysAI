@@ -23,7 +23,7 @@ import java.awt.image.DataBufferInt;
 import java.io.IOException;
 
 public class LabyrinthUI extends Canvas implements Runnable{
-    public static final int WIDTH = 160;
+    public static final int WIDTH = 240;
     public static final int HEIGHT = WIDTH/12*9;
     public static final int SCALE = 3;
     public static final String NAME = "Labyrinth";

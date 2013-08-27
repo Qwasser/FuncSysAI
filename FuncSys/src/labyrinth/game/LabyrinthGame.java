@@ -8,6 +8,7 @@ import fs.Rule;
 import labyrinth.level.LabyrinthMap;
 import labyrinth.level.TyleType;
 import labyrinth.level.WalkerDirections;
+import sun.org.mozilla.javascript.internal.ast.WhileLoop;
 
 
 import java.util.LinkedList;
@@ -380,8 +381,10 @@ public class LabyrinthGame {
 
     public void fsTick(int steps)
     {
-        for(int i = 0; i < steps; i++)
+        int i = 0;
+        while (true)
         {
+            i++;
             this.walker.makeAction();
             this.walker.observeResult();
 
@@ -391,7 +394,8 @@ public class LabyrinthGame {
             }
         }
 
-        System.out.println("#########################################");
+        System.out.println("steps:" + i);
+        /*
         System.out.println(walker.memory.toString());
         System.out.println(walker.primaryFS.probTableToString());
         for (Rule rule: walker.primaryFS.getRules())
@@ -404,17 +408,18 @@ public class LabyrinthGame {
             System.out.println("Depth is near 1");
             for (Rule rule: fs.getRules())
             {
+                System.out.println("RULE 1111111111111111");
                 System.out.println(PredicateTable.predicatesToString(rule.getPredicates()) + "Action is "+rule.getAction().toString() + " Prob is is "+rule.getProbability());
+            }
 
-                Set<FunctionalSystem> set2 = fs.getLinkToSubFS();
-                for (FunctionalSystem fs2: set2){
-                    System.out.println("Depth is near 0");
-                    for (Rule rule2: fs2.getRules())
-                    {
-                        System.out.println(PredicateTable.predicatesToString(rule2.getPredicates()) + "Action is "+rule2.getAction().toString() + " Prob is is "+rule2.getProbability());
-                    }
+            Set<FunctionalSystem> set2 = fs.getLinkToSubFS();
+            for (FunctionalSystem fs2: set2){
+                System.out.println("Depth is near 0");
+                for (Rule rule2: fs2.getRules())
+                {
+                    System.out.println(PredicateTable.predicatesToString(rule2.getPredicates()) + "Action is "+rule2.getAction().toString() + " Prob is is "+rule2.getProbability());
                 }
             }
-        }
+        }  */
     }
 }

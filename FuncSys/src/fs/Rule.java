@@ -26,6 +26,11 @@ public class Rule {
     private Statistics statistics;
 
     /**
+     * Punishment in a row
+     */
+    int punishmentRow = 0;
+
+    /**
      * Constructor. Creates instance with
      * adjusted predicates-condition, action to perform,
      * and statistics
@@ -67,6 +72,7 @@ public class Rule {
      * Improve rule statistics
      */
     public void encourage() {
+        this.punishmentRow = 0;
         this.statistics.addTestResult(true);
     }
 
@@ -74,7 +80,9 @@ public class Rule {
      * Impair rule statistics
      */
     public void punish() {
-        this.statistics.addTestResult(false);
+        this.punishmentRow++;
+        for (int i = 0; i < this.punishmentRow; i++)
+            this.statistics.addTestResult(false);
     }
 
     /**
