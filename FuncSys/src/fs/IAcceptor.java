@@ -33,7 +33,7 @@ public abstract class IAcceptor
     public class ShortMemory
     {
         public IAction lastAction;
-        public FunctionalSystem lastFs;
+        public IFunctionalSystem lastFs;
         public Boolean isRandom;
 
         public PredicateSet initialSituation;
@@ -44,7 +44,7 @@ public abstract class IAcceptor
             String str = "";
             str = str.concat("Last action was ");
             str = str.concat(memory.lastAction.toString() + ". ");
-            str = str.concat("Last fs depth: " + memory.lastFs.depth);
+            str = str.concat("Last fs depth: ");
             str = str.concat(" Was random: " + memory.isRandom);
             return str;
         }

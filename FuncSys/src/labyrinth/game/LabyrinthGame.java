@@ -32,7 +32,7 @@ public class LabyrinthGame {
         this.state = state;
 
         PredicateSet goal = new PredicateSet();
-        goal.set(PredicateTable.Dead, false);
+        goal.set(PredicateTable.Dead, true);
         this.walker = new LabyrinthWalker(this, goal);
 
         this.state.playerX = map.getPlayerStartX();
@@ -247,7 +247,8 @@ public class LabyrinthGame {
         situation.set(PredicateTable.Hungry, false);
         situation.set(PredicateTable.VeryHungry, false);
 
-        int hungerClass = this.state.hungerLevel/GameState.HUNGER_LIMIT*3;
+        int hungerClass = (this.state.hungerLevel*3)/GameState.HUNGER_LIMIT;
+        //System.out.println(hungerClass);
         if (hungerClass == 0) situation.set(PredicateTable.NotHungry, true);
         if (hungerClass == 1) situation.set(PredicateTable.Hungry, true);
         if (hungerClass >= 2) situation.set(PredicateTable.VeryHungry, true);
@@ -399,7 +400,7 @@ public class LabyrinthGame {
         int i = 0;
         if (steps==1){
             this.walker.makeAction();
-            this.hungerUpdate();
+            //this.hungerUpdate();
             this.walker.observeResult();
             if (state.isFail)
             {
@@ -412,14 +413,14 @@ public class LabyrinthGame {
             {
                 i++;
                 this.walker.makeAction();
-                this.hungerUpdate();
+                //this.hungerUpdate();
                 this.walker.observeResult();
 
 
 
                 if (state.isFail)
                 {
-                    this.resetGame();
+                    //this.resetGame();
                     break;
                     //
                 }

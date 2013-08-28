@@ -1,53 +1,55 @@
 package fs;
 
-import java.text.AttributedString;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Random;
+import java.util.Set;
 
 /**
- * Primary class that provides mechanism of adjusted goal reaching
+ * Created with IntelliJ IDEA.
+ * User: Admin
+ * Date: 28.08.13
+ * Time: 15:24
+ * To change this template use File | Settings | File Templates.
  */
-public class FunctionalSystem implements IFunctionalSystem
-{
+public class NegFunctionalSystem implements IFunctionalSystem{
     Double MIN_PROB = 0.1;
     // Goal of this FS
     PredicateSet goal;
 
     //minimum prob
-    public static final double  MIN_PROBABILITY = 0.4;
+    public static final double  MAX_PROBABILITY = 0.8;
 
     //List of states, that can be managed with this FS
-    public HashMap<FunctionalSystem, Rule> rulesToFs;
+    public HashMap<NegFunctionalSystem, Rule> rulesToFs;
     Set<Rule> rules;
 
     //Table of probabilities
-    HashMap<PredicateSet, HashMap<FunctionalSystem, Statistics>> probabilityTable;
+    HashMap<PredicateSet, HashMap<NegFunctionalSystem, Statistics>> probabilityTable;
 
     //Parent FS
-    FunctionalSystem parentFs;
+    NegFunctionalSystem parentFs;
 
     //Maximum depth
     int depth;
 
-    public FunctionalSystem(PredicateSet goal, int  depth)
+    public NegFunctionalSystem(PredicateSet goal, int  depth)
     {
         this.goal = goal;
         this.parentFs = null;
-        probabilityTable = new HashMap<PredicateSet, HashMap<FunctionalSystem, Statistics>>();
+        probabilityTable = new HashMap<PredicateSet, HashMap<NegFunctionalSystem, Statistics>>();
         rules = new HashSet<Rule>();
-        rulesToFs = new HashMap<FunctionalSystem, Rule>();
+        rulesToFs = new HashMap<NegFunctionalSystem, Rule>();
         this.depth = depth;
     }
 
-    public FunctionalSystem(PredicateSet goal, int depth, FunctionalSystem parentFs)
+    public NegFunctionalSystem(PredicateSet goal, int depth, NegFunctionalSystem parentFs)
     {
         this.goal = goal;
         this.parentFs = parentFs;
-        probabilityTable = new HashMap<PredicateSet, HashMap<FunctionalSystem, Statistics>>();
+        probabilityTable = new HashMap<PredicateSet, HashMap<NegFunctionalSystem, Statistics>>();
         rules = new HashSet<Rule>();
-        rulesToFs = new HashMap<FunctionalSystem, Rule>();
+        rulesToFs = new HashMap<NegFunctionalSystem, Rule>();
         this.depth = depth;
     }
 
@@ -59,7 +61,7 @@ public class FunctionalSystem implements IFunctionalSystem
 
         // Choose the most suitable rule
         Rule matchingRule = null;
-        Double ruleProb = MIN_PROB;
+        Double ruleProb = MAX_PROBABILITY;
         for (Rule rule: rules)
         {
             // It is really an equality condition now
@@ -74,18 +76,18 @@ public class FunctionalSystem implements IFunctionalSystem
         // Create row in probTable for current situation
         if(!probabilityTable.containsKey(startState))
         {
-            probabilityTable.put(startState, new HashMap<FunctionalSystem, Statistics>());
+            probabilityTable.put(startState, new HashMap<NegFunctionalSystem, Statistics>());
         }
 
         // Choose the most suitable fs
-        Double bestFSProb = MIN_PROB;
-        FunctionalSystem bestFS = null;
+        Double bestFSProb = MAX_PROBABILITY;
+        NegFunctionalSystem bestFS = null;
 
-        HashMap<FunctionalSystem, Statistics> subProbabilities = probabilityTable.get(startState);
-        for (FunctionalSystem subFs: subProbabilities.keySet())
+        HashMap<NegFunctionalSystem, Statistics> subProbabilities = probabilityTable.get(startState);
+        for (NegFunctionalSystem subFs: subProbabilities.keySet())
         {
             Statistics prob = subProbabilities.get(subFs);
-            if (prob.calcProbability()* this.rulesToFs.get(subFs).getProbability() > bestFSProb)
+            if (prob.calcProbability()* this.rulesToFs.get(subFs).getProbability() < bestFSProb)
             {
                 //Total probability of reaching main goal
                 bestFSProb = prob.calcProbability() * this.rulesToFs.get(subFs).getProbability();
@@ -95,12 +97,12 @@ public class FunctionalSystem implements IFunctionalSystem
 
         //Choose action or subfs
         IAction action = null;
-        if (ruleProb >= bestFSProb && ruleProb > MIN_PROB)
+        if (ruleProb <= bestFSProb && ruleProb < MAX_PROBABILITY)
         {
             action = matchingRule.getAction();
             acceptor.getMemory().isRandom = false;
         }
-        else if (bestFSProb > ruleProb && bestFSProb > MIN_PROB)
+        else if (bestFSProb < ruleProb && bestFSProb < MAX_PROBABILITY)
         {
             bestFS.performAction(acceptor);
             return;
@@ -109,7 +111,7 @@ public class FunctionalSystem implements IFunctionalSystem
         {
             Random random = new Random();
             int choice = random.nextInt(10);
-            if (choice < 8 || this.rulesToFs.keySet().size() == 0)
+            if (choice < 2 || this.rulesToFs.keySet().size() == 0)
             {
                 action = acceptor.getRandomAction();
                 acceptor.getMemory().isRandom = true;
@@ -118,7 +120,7 @@ public class FunctionalSystem implements IFunctionalSystem
             {
                 choice = random.nextInt(this.rulesToFs.keySet().size());
                 int i = 0;
-                for (FunctionalSystem fs: this.rulesToFs.keySet())
+                for (NegFunctionalSystem fs: this.rulesToFs.keySet())
                 {
                     if (i == choice)
                     {
@@ -144,7 +146,7 @@ public class FunctionalSystem implements IFunctionalSystem
     public void seeResult(IAcceptor acceptor) {
         PredicateSet endState = acceptor.getCurrentSituation();
         History history = acceptor.getHistoryInstance();
-        FunctionalSystem lastFs = (FunctionalSystem)acceptor.getMemory().lastFs;
+        NegFunctionalSystem lastFs = (NegFunctionalSystem)acceptor.getMemory().lastFs;
         // Memorize an event
         history.addEvent(acceptor.getMemory().initialSituation, acceptor.getMemory().lastAction, endState);
         if (!acceptor.getMemory().isRandom)
@@ -160,7 +162,7 @@ public class FunctionalSystem implements IFunctionalSystem
             {
                 if (!lastFs.rulesToFs.containsValue(rule) && lastFs.depth > 0)
                 {
-                    FunctionalSystem fs = lastFs.createSubFS(rule.getPredicates(), lastFs, acceptor);
+                    NegFunctionalSystem fs = lastFs.createSubFS(rule.getPredicates(), lastFs, acceptor);
                     lastFs.rulesToFs.put(fs, rule);
                 }
             }
@@ -190,7 +192,7 @@ public class FunctionalSystem implements IFunctionalSystem
         {
             Statistics statistics = history.getStatistics( startSituation,
                     action, endSituation );
-            if( statistics.calcProbability() > MIN_PROBABILITY )
+            if( statistics.calcProbability() < 2)
             {
                 Rule rule = new Rule( startSituation, action, statistics );
                 rules.add( rule );
@@ -214,7 +216,7 @@ public class FunctionalSystem implements IFunctionalSystem
         if(ruleToUpdate == null) return;
 
         Statistics stats = null;
-        HashMap<FunctionalSystem, Statistics> subProbabilities;
+        HashMap<NegFunctionalSystem, Statistics> subProbabilities;
         if (parentFs != null)
         {
             subProbabilities = parentFs.probabilityTable.get(acceptor.getMemory().initialSituation);
@@ -230,7 +232,7 @@ public class FunctionalSystem implements IFunctionalSystem
             ruleToUpdate.encourage();
             if (stats != null)
                 stats.addTestResult(Boolean.TRUE);
-            FunctionalSystem fs = this;
+            NegFunctionalSystem fs = this;
             while (fs.parentFs != null)
             {
 
@@ -248,7 +250,7 @@ public class FunctionalSystem implements IFunctionalSystem
             ruleToUpdate.punish();
             if (stats != null)
                 stats.addTestResult(Boolean.FALSE);
-            FunctionalSystem fs = this;
+            NegFunctionalSystem fs = this;
             while (fs.parentFs != null)
             {
 
@@ -264,9 +266,9 @@ public class FunctionalSystem implements IFunctionalSystem
         this.updateRules(acceptor);
     }
 
-    private FunctionalSystem createSubFS(PredicateSet goal, FunctionalSystem parentFS, IAcceptor acceptor)
+    private NegFunctionalSystem createSubFS(PredicateSet goal, NegFunctionalSystem parentFS, IAcceptor acceptor)
     {
-        FunctionalSystem fs = new FunctionalSystem(goal, this.depth - 1, parentFS);
+        NegFunctionalSystem fs = new NegFunctionalSystem(goal, this.depth - 1, parentFS);
         History history = acceptor.getHistoryInstance();
         Set< Event > events = history.getEventsWithResult(goal);
         Set< Rule > rules = generateRules( events, goal );
@@ -296,7 +298,7 @@ public class FunctionalSystem implements IFunctionalSystem
             IAction ruleAction = event.getAction();
             Statistics statistics = event.getResultStatistics( eventResult );
 
-            if( statistics.calcProbability() > MIN_PROBABILITY )
+            if( statistics.calcProbability() < 2 )
                 resultRules.add( new Rule( rulePredicates, ruleAction, statistics ) );
         }
 
@@ -318,7 +320,7 @@ public class FunctionalSystem implements IFunctionalSystem
                 rulesToAdd.add(rule);
                 if (this.depth > 0)
                 {
-                    FunctionalSystem fs = createSubFS(rule.getPredicates(), this, acceptor);
+                    NegFunctionalSystem fs = createSubFS(rule.getPredicates(), this, acceptor);
                     this.rulesToFs.put(fs, rule);
                 }
             }
@@ -340,7 +342,7 @@ public class FunctionalSystem implements IFunctionalSystem
 
     public Set <FunctionalSystem> getLinkToSubFS()
     {
-        return this.rulesToFs.keySet();
+        return new HashSet<FunctionalSystem>();
     }
 
     public Set <Rule> getRules()
@@ -353,8 +355,8 @@ public class FunctionalSystem implements IFunctionalSystem
         for (PredicateSet situation: this.probabilityTable.keySet())
         {
             str = str.concat(" " + situation.toString());
-            HashMap<FunctionalSystem, Statistics> probs = probabilityTable.get(situation);
-            for (FunctionalSystem fs: probs.keySet())
+            HashMap<NegFunctionalSystem, Statistics> probs = probabilityTable.get(situation);
+            for (NegFunctionalSystem fs: probs.keySet())
             {
                 str = str.concat(" " + probs.get(fs).calcProbability());
             }
