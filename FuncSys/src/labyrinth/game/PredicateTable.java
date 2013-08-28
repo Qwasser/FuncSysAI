@@ -31,8 +31,11 @@ public class PredicateTable {
 
     public static final int SeeBattery = 14;
 
-    public static final int FoundGold = 15;
-    public static final int Dead = 16;
+    public static final int FoundBattery = 15;
+    public static final int NotHungry = 16;
+    public static final int Hungry = 17;
+    public static final int VeryHungry = 18;
+    public static final int Dead = 19;
 
 
     public static String predicatesToString(PredicateSet state)
@@ -57,7 +60,10 @@ public class PredicateTable {
 
         if (state.getPredicateValue(14)) str = str.concat("See battery. ");
         if (state.getPredicateValue(15)) str = str.concat("Found gold. ");
-        if (state.getPredicateValue(16)) str = str.concat("Dead. ");
+        if (state.getPredicateValue(16)) str = str.concat("Not hungry. ");
+        if (state.getPredicateValue(17)) str = str.concat("Hungry. ");
+        if (state.getPredicateValue(18)) str = str.concat("Very hungry. ");
+        if (state.getPredicateValue(19)) str = str.concat("Dead. ");
 
         return str;
     }

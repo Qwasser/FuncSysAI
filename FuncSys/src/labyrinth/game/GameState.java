@@ -10,6 +10,9 @@ import labyrinth.level.WalkerDirections;
  * To change this template use File | Settings | File Templates.
  */
 public class GameState {
+    public static final int HUNGER_LIMIT = 120;
+
+    int hungerLevel;
     int playerX;
     int playerY;
 

@@ -23,9 +23,9 @@ import java.awt.image.DataBufferInt;
 import java.io.IOException;
 
 public class LabyrinthUI extends Canvas implements Runnable{
-    public static final int WIDTH = 240;
-    public static final int HEIGHT = WIDTH/12*9;
-    public static final int SCALE = 3;
+    public static final int WIDTH = 320;
+    public static final int HEIGHT = WIDTH;
+    public static final int SCALE = 2;
     public static final String NAME = "Labyrinth";
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);

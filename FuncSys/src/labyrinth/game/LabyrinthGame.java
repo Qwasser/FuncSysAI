@@ -8,7 +8,6 @@ import fs.Rule;
 import labyrinth.level.LabyrinthMap;
 import labyrinth.level.TyleType;
 import labyrinth.level.WalkerDirections;
-import sun.org.mozilla.javascript.internal.ast.WhileLoop;
 
 
 import java.util.LinkedList;
@@ -33,7 +32,7 @@ public class LabyrinthGame {
         this.state = state;
 
         PredicateSet goal = new PredicateSet();
-        goal.set(PredicateTable.FoundGold, true);
+        goal.set(PredicateTable.Dead, false);
         this.walker = new LabyrinthWalker(this, goal);
 
         this.state.playerX = map.getPlayerStartX();
@@ -41,7 +40,7 @@ public class LabyrinthGame {
         this.state.batteryX = map.getBatteryStartX();
         this.state.batteryY = map.getBatteryStartY();
         this.state.isBatteryTaken = false;
-
+        this.state.hungerLevel = 0;
         this.state.walkerDirection = WalkerDirections.DOWN;
 
         this.state.isFail = false;
@@ -237,17 +236,31 @@ public class LabyrinthGame {
     {
         if (this.state.isWon)
         {
-            situation.set(PredicateTable.FoundGold, true);
+            situation.set(PredicateTable.FoundBattery, true);
         }
         else
         {
-            situation.set(PredicateTable.FoundGold, false);
+            situation.set(PredicateTable.FoundBattery, false);
         }
 
+        situation.set(PredicateTable.NotHungry, false);
+        situation.set(PredicateTable.Hungry, false);
+        situation.set(PredicateTable.VeryHungry, false);
 
-        situation.set(PredicateTable.Dead, false);
+        int hungerClass = this.state.hungerLevel/GameState.HUNGER_LIMIT*3;
+        if (hungerClass == 0) situation.set(PredicateTable.NotHungry, true);
+        if (hungerClass == 1) situation.set(PredicateTable.Hungry, true);
+        if (hungerClass >= 2) situation.set(PredicateTable.VeryHungry, true);
+        //if (state.hungerLevel == GameState.HUNGER_LIMIT - 1)
+        situation.set(PredicateTable.Dead, this.state.isFail);
 
 
+    }
+
+    private void hungerUpdate(){
+        this.state.hungerLevel++;
+        if (this.state.hungerLevel >= GameState.HUNGER_LIMIT-1)
+            this.state.isFail = true;
     }
 
 
@@ -309,6 +322,7 @@ public class LabyrinthGame {
             state.hasGold = true;
             state.isBatteryTaken = true;
             state.isWon = true;
+            state.hungerLevel = 0;
         }
     }
 
@@ -363,6 +377,7 @@ public class LabyrinthGame {
         this.state.hasGold = false;
 
         this.state.walkerDirection = WalkerDirections.RIGHT;
+        this.state.hungerLevel = 0;
     }
 
     public void start()
@@ -382,20 +397,37 @@ public class LabyrinthGame {
     public void fsTick(int steps)
     {
         int i = 0;
-        while (true)
-        {
-            i++;
+        if (steps==1){
             this.walker.makeAction();
+            this.hungerUpdate();
             this.walker.observeResult();
-
-            if (this.state.isWon)
+            if (state.isFail)
             {
-                break;
+                this.resetGame();
+            }
+        }
+        else
+        {
+            while (true)
+            {
+                i++;
+                this.walker.makeAction();
+                this.hungerUpdate();
+                this.walker.observeResult();
+
+
+
+                if (state.isFail)
+                {
+                    this.resetGame();
+                    break;
+                    //
+                }
             }
         }
 
         System.out.println("steps:" + i);
-        /*
+
         System.out.println(walker.memory.toString());
         System.out.println(walker.primaryFS.probTableToString());
         for (Rule rule: walker.primaryFS.getRules())
@@ -420,6 +452,6 @@ public class LabyrinthGame {
                     System.out.println(PredicateTable.predicatesToString(rule2.getPredicates()) + "Action is "+rule2.getAction().toString() + " Prob is is "+rule2.getProbability());
                 }
             }
-        }  */
+        }
     }
 }
