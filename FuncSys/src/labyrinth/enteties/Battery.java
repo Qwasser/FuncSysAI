@@ -14,12 +14,14 @@ import labyrinth.level.Level;
  */
 public class Battery extends Mob {
 
-    private int colour = Colours.get(-1, 225, 141, 150);
+    private int colour = Colours.get(-1, 000, 141, 151);
 
     int xTile = 0;
+    int num;
 
-    public Battery(Level level, int x, int y, InputHandler input) {
+    public Battery(Level level, int x, int y, int num, InputHandler input) {
         super(level, "Battery", x, y, 1);
+        this.num = num;
     }
 
     @Override
@@ -29,13 +31,13 @@ public class Battery extends Mob {
 
     @Override
     public void tick() {
-        this.x = this.level.state.getBatteryXinPixels();
-        this.y = this.level.state.getBatteryYinPixels();
+        this.x = this.level.state.getBatteryXinPixels(this.level.map.getBatteryStartX(num));
+        this.y = this.level.state.getBatteryYinPixels(this.level.map.getBatteryStartY(num));
     }
 
     @Override
     public void render(Screen screen) {
-        if(!this.level.state.isTaken())
+        if(!this.level.state.isTaken(num))
         {
             int yTile = 2;
             int xTile = 6;

@@ -36,8 +36,9 @@ public class GeneralUI {
 
     public GeneralUI(){
         mainFrame = new JFrame("FS");
-        GameState state = new GameState();
+
         LabyrinthMap map = MapLibrary.mediumMap();
+        GameState state = new GameState(map);
         game = new LabyrinthGame(map, state);
         labUI = new LabyrinthUI(state, map);
 
@@ -99,14 +100,17 @@ public class GeneralUI {
         if (e.getSource() == this.turnButton)
         {
             this.game.turnLeft();
+            game.tick();
         }
         if (e.getSource() == this.grabButton)
         {
             this.game.grabGold();
+            game.tick();
         }
         if (e.getSource() == this.goButton)
         {
             this.game.stepForward();
+            game.tick();
         }
         if (e.getSource() == this.fsButton)
         {

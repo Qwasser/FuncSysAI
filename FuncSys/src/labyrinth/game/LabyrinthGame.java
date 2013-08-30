@@ -37,9 +37,7 @@ public class LabyrinthGame {
 
         this.state.playerX = map.getPlayerStartX();
         this.state.playerY = map.getPlayerStartY();
-        this.state.batteryX = map.getBatteryStartX();
-        this.state.batteryY = map.getBatteryStartY();
-        this.state.isBatteryTaken = false;
+
         this.state.hungerLevel = 0;
         this.state.walkerDirection = WalkerDirections.DOWN;
 
@@ -226,10 +224,7 @@ public class LabyrinthGame {
                 y = state.playerY;
                 break;
         }
-        if (x == state.batteryX && y == state.batteryY)
-            situation.set(PredicateTable.SeeBattery, true);
-        else
-            situation.set(PredicateTable.SeeBattery, false);
+
     }
 
     private void setGameState(PredicateSet situation)
@@ -242,17 +237,18 @@ public class LabyrinthGame {
         {
             situation.set(PredicateTable.FoundBattery, false);
         }
-
+        /*
         situation.set(PredicateTable.NotHungry, false);
         situation.set(PredicateTable.Hungry, false);
         situation.set(PredicateTable.VeryHungry, false);
 
-        int hungerClass = (this.state.hungerLevel*3)/GameState.HUNGER_LIMIT;
+        // hungerClass = (this.state.hungerLevel*3)/GameState.HUNGER_LIMIT;
         //System.out.println(hungerClass);
-        if (hungerClass == 0) situation.set(PredicateTable.NotHungry, true);
-        if (hungerClass == 1) situation.set(PredicateTable.Hungry, true);
-        if (hungerClass >= 2) situation.set(PredicateTable.VeryHungry, true);
+        //if (hungerClass == 0) situation.set(PredicateTable.NotHungry, true);
+        //if (hungerClass == 1) situation.set(PredicateTable.Hungry, true);
+        //if (hungerClass >= 2) situation.set(PredicateTable.VeryHungry, true);
         //if (state.hungerLevel == GameState.HUNGER_LIMIT - 1)
+        */
         situation.set(PredicateTable.Dead, this.state.isFail);
 
 
@@ -318,13 +314,9 @@ public class LabyrinthGame {
                 y = state.playerY;
                 break;
         }
-        if (x == state.batteryX && y == state.batteryY && !state.isBatteryTaken)
-        {
-            state.hasGold = true;
-            state.isBatteryTaken = true;
-            state.isWon = true;
-            state.hungerLevel = 0;
-        }
+
+        if (state.hasBattery(x, y))
+            state.grabBattery(x, y);
     }
 
     public void turnLeft()
@@ -369,9 +361,6 @@ public class LabyrinthGame {
     {
         this.state.playerX = map.getPlayerStartX();
         this.state.playerY = map.getPlayerStartY();
-        this.state.batteryX = map.getBatteryStartX();
-        this.state.batteryY = map.getBatteryStartY();
-        this.state.isBatteryTaken = false;
 
         this.state.isFail = false;
         this.state.isWon = false;
@@ -394,6 +383,12 @@ public class LabyrinthGame {
         this.turnRight();
 
     }
+
+    public void tick()
+    {
+        this.state.tick();
+    }
+
 
     public void fsTick(int steps)
     {
@@ -426,6 +421,7 @@ public class LabyrinthGame {
                 }
             }
         }
+
 
         System.out.println("steps:" + i);
 

@@ -10,12 +10,11 @@ package labyrinth.level;
 public class MapLibrary {
     public static LabyrinthMap simpleMap1()
     {
-        LabyrinthMap map = new LabyrinthMap(7, 5);
+        LabyrinthMap map = new LabyrinthMap(7, 5, 1);
         map.setPlayerStartY(2);
         map.setPlayerStartX(1);
 
-        map.setBatteryStartX(5);
-        map.setBatteryStartY(2);
+        map.setBatteryPos(3, 3, 0);
 
         map.setTyle(0, 0, TyleType.WALL);
         map.setTyle(1, 0, TyleType.WALL);
@@ -62,12 +61,11 @@ public class MapLibrary {
 
     public static LabyrinthMap simpleMap2()
     {
-        LabyrinthMap map = new LabyrinthMap(8, 5);
+        LabyrinthMap map = new LabyrinthMap(8, 5, 1);
         map.setPlayerStartY(2);
         map.setPlayerStartX(1);
 
-        map.setBatteryStartX(6);
-        map.setBatteryStartY(2);
+        map.setBatteryPos(3, 3, 0);
 
         map.setTyle(0, 0, TyleType.WALL);
         map.setTyle(1, 0, TyleType.WALL);
@@ -119,12 +117,14 @@ public class MapLibrary {
 
     public static LabyrinthMap mediumMap()
     {
-        LabyrinthMap map = new LabyrinthMap(10, 10);
+        LabyrinthMap map = new LabyrinthMap(10, 10, 4);
         map.setPlayerStartY(2);
         map.setPlayerStartX(1);
 
-        map.setBatteryStartX(4);
-        map.setBatteryStartY(3);
+        map.setBatteryPos(3, 3, 0);
+        map.setBatteryPos(3, 4, 1);
+        map.setBatteryPos(3, 5, 2);
+        map.setBatteryPos(3, 6, 3);
 
         map.setTyle(0, 0, TyleType.WALL);
         map.setTyle(1, 0, TyleType.WALL);

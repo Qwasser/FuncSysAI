@@ -23,14 +23,14 @@ import java.awt.image.DataBufferInt;
 import java.io.IOException;
 
 public class LabyrinthUI extends Canvas implements Runnable{
-    public static final int WIDTH = 320;
-    public static final int HEIGHT = WIDTH;
+    private int WIDTH = 0;
+    private int HEIGHT = 0;
     public static final int SCALE = 2;
     public static final String NAME = "Labyrinth";
 
-    private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-    private int[] pixele = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-    private int[] colours = new int[6*6*6];
+    private BufferedImage image;
+    private int[] pixele;
+    private int[] colours;
 
     private Screen screen;
     public InputHandler input;
@@ -43,6 +43,13 @@ public class LabyrinthUI extends Canvas implements Runnable{
     int tickCount = 0;
     public  LabyrinthUI(GameState state, LabyrinthMap map)
     {
+        WIDTH = map.getWidth()*32;
+        HEIGHT = map.getHeight()*32;
+
+        image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+        pixele = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+        colours = new int[6*6*6];
+
         this.state = state;
         this.map = map;
 
@@ -134,8 +141,11 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
         level = new Level(map, state);
         System.out.println(this.level.state.playerX);
-        Battery battery = new Battery(level, 167, 76, input);
-        level.addEntity(battery);
+        for (int i = 0; i < this.map.getBatteryCount(); i++)
+        {
+            Battery battery = new Battery(level, 167, 76, i, input);
+            level.addEntity(battery);
+        }
         player = new Player(level, 72, 76, input);
         level.addEntity(player);
 

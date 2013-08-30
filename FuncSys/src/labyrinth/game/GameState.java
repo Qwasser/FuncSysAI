@@ -1,5 +1,6 @@
 package labyrinth.game;
 
+import labyrinth.level.LabyrinthMap;
 import labyrinth.level.WalkerDirections;
 
 /**
@@ -11,15 +12,15 @@ import labyrinth.level.WalkerDirections;
  */
 public class GameState {
     public static final int HUNGER_LIMIT = 120;
+    public static final int BATTERY_RESPAWN_TIME = 10;
 
+    LabyrinthMap map;
     int hungerLevel;
     int playerX;
     int playerY;
 
-    int batteryX;
-    int batteryY;
-
     int stepNumber;
+    int [] batteryStates;
 
     public WalkerDirections walkerDirection;
 
@@ -27,10 +28,30 @@ public class GameState {
     boolean isWon;
     boolean  hasGold;
 
-    boolean  isBatteryTaken;
+    public GameState(LabyrinthMap map)
+    {
+        this.map = map;
+        batteryStates = new int[map.getBatteryCount()];
+        for (int i = 0; i < batteryStates.length; i++)
+        {
+            batteryStates[i] = -1;
+        }
+    }
+    public boolean isTaken(int num){
+        return this.batteryStates[num] != -1;
+    }
 
-    public boolean isTaken(){
-        return this.isBatteryTaken;
+    public boolean hasBattery(int x, int y)
+    {
+        if(this.map.ifTileHasBattery(x,y))
+            if(!this.isTaken(map.getBatteryNum(x,y)))
+                return true;
+        return false;
+    }
+
+
+    public void grabBattery(int x, int y){
+        this.batteryStates[map.getBatteryNum(x,y)] = 0;
     }
 
     public int getPlayerXinPixels(){
@@ -41,12 +62,23 @@ public class GameState {
         return (playerY) * 32 + 12;
     }
 
-    public int getBatteryXinPixels(){
-        return (batteryX) * 32 + 7;
+    public int getBatteryXinPixels(int x){
+        return (x) * 32 + 7;
     }
 
-    public int getBatteryYinPixels(){
-        return (batteryY) * 32 + 12;
+    public int getBatteryYinPixels(int y){
+        return (y) * 32 + 12;
+    }
+
+
+    public void tick(){
+        for (int i = 0; i < batteryStates.length; i++)
+        {
+            if (batteryStates[i] >= 0)
+                batteryStates[i]++;
+            if (batteryStates[i] > BATTERY_RESPAWN_TIME)
+                batteryStates[i] = -1;
+        }
     }
 
 }

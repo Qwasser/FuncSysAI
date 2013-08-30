@@ -15,15 +15,22 @@ public class LabyrinthMap
     int playerStartX;
     int playerStartY;
 
-    int batteryX;
-    int batteryY;
+    int batteryCount;
+
+    int [] batteryX;
+    int [] batteryY;
 
     private TyleType[][] map;
+    private int[][] batteryLocation;
 
-    public void setBatteryPos(int x, int y)
+    public void setBatteryPos(int x, int y, int num)
     {
-        this.batteryX = x;
-        this.batteryY = y;
+        if (num > this.batteryY.length - 1)
+            throw new ArrayIndexOutOfBoundsException();
+        this.batteryX[num] = x;
+        this.batteryY[num] = y;
+
+        this.batteryLocation[x][y] = num + 1;
     }
 
 
@@ -32,9 +39,19 @@ public class LabyrinthMap
         this.width = width;
     }
 
+    public int getWidth()
+    {
+        return this.width;
+    }
+
     public void setHeight(int height)
     {
         this.height = height;
+    }
+
+    public int getHeight()
+    {
+        return this.height;
     }
 
     public void setPlayerStartX(int x)
@@ -57,27 +74,32 @@ public class LabyrinthMap
         return this.playerStartY;
     }
 
-    public void setBatteryStartX(int x)
+    public int getBatteryStartX(int num)
     {
-        this.batteryX = x;
+        if (num > this.batteryX.length - 1)
+            throw new ArrayIndexOutOfBoundsException();
+        return this.batteryX[num];
     }
 
-    public void setBatteryStartY(int y)
+    public int getBatteryStartY(int num)
     {
-        this.batteryY = y;
+        if (num > this.batteryY.length - 1)
+            throw new ArrayIndexOutOfBoundsException();
+        return this.batteryY[num];
     }
 
-    public int getBatteryStartX()
-    {
-        return this.batteryX;
+    public boolean ifTileHasBattery(int x, int y){
+        return this.batteryLocation[x][y] > 0;
     }
 
-    public int getBatteryStartY()
-    {
-        return this.batteryY;
+    public int getBatteryNum(int x, int y){
+        return this.batteryLocation[x][y] - 1;
     }
 
-
+    public int getBatteryCount()
+    {
+        return this.batteryCount;
+    }
 
     public TyleType getCellType(int x, int y)
     {
@@ -89,12 +111,19 @@ public class LabyrinthMap
         return map[x][y];
     }
 
-    public LabyrinthMap(int width, int height)
+    public LabyrinthMap(int width, int height, int batteryCount)
     {
+        this.batteryCount = batteryCount;
+
         this.width = width;
         this.height = height;
 
+        this.batteryY = new int[batteryCount];
+        this.batteryX = new  int[batteryCount];
+
         this.map = new TyleType[width][height];
+
+        this.batteryLocation = new int[width][height];
     }
 
     public void setTyle(int x, int y, TyleType tyle)
