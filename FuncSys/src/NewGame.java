@@ -1,10 +1,4 @@
 import labyrinth.GeneralUI;
-import labyrinth.game.GameState;
-import labyrinth.game.LabyrinthGame;
-import labyrinth.game.LabyrinthUI;
-import labyrinth.level.LabyrinthMap;
-import labyrinth.level.MapLibrary;
-import labyrinth.level.TyleType;
 
 /**
  * Created with IntelliJ IDEA.

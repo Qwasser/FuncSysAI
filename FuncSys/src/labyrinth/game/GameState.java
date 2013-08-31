@@ -1,5 +1,6 @@
 package labyrinth.game;
 
+import fs.PredicateSet;
 import labyrinth.level.LabyrinthMap;
 import labyrinth.level.WalkerDirections;
 
@@ -12,21 +13,38 @@ import labyrinth.level.WalkerDirections;
  */
 public class GameState {
     public static final int HUNGER_LIMIT = 120;
-    public static final int BATTERY_RESPAWN_TIME = 10;
+    public static final int BATTERY_RESPAWN_TIME = 25;
 
     LabyrinthMap map;
     int hungerLevel;
     int playerX;
     int playerY;
 
-    int stepNumber;
+    PredicateSet currentPredicates;
+    public void setPredicates(PredicateSet set)
+    {
+        this.currentPredicates = set;
+    }
+
+    public String getStringPredicates()
+    {
+        if (this.currentPredicates != null)
+        {
+            return PredicateTable.predicatesToString(currentPredicates);
+        }
+        else
+        {
+            return " ";
+        }
+    }
+
     int [] batteryStates;
 
     public WalkerDirections walkerDirection;
 
     boolean isFail;
     boolean isWon;
-    boolean  hasGold;
+    boolean gotBattery;
 
     public GameState(LabyrinthMap map)
     {

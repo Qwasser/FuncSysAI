@@ -1,7 +1,6 @@
 package labyrinth.level;
 
 import labyrinth.enteties.Entity;
-import labyrinth.enteties.Player;
 import labyrinth.game.GameState;
 import labyrinth.gfx.Screen;
 
@@ -37,7 +36,7 @@ public class Level {
     public void generateLevel() {
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
-                 tiles[x + y*width] = TyleType.convertToTile(map.getCellType(x, y)).getid();
+                 tiles[x + y*width] = TileType.convertToTile(map.getCellType(x, y)).getid();
             }
         }
     }

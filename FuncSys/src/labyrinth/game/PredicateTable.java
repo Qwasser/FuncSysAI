@@ -64,7 +64,7 @@ public class PredicateTable {
 
     public static String predicatesToString(PredicateSet state)
     {
-        String str = "";
+        String str = "<html>";
         if (state.getPredicateValue(1)) str = str.concat("Upper left tile is empty. ");
         if (state.getPredicateValue(2)) str = str.concat("Upper left tile is Wall. ");
         if (state.getPredicateValue(3)) str = str.concat("Upper left tile is Lava. ");
@@ -76,6 +76,8 @@ public class PredicateTable {
         if (state.getPredicateValue(7)) str = str.concat("Upper right tile is empty. ");
         if (state.getPredicateValue(8)) str = str.concat("Upper right tile is Wall. ");
         if (state.getPredicateValue(9)) str = str.concat("Upper right tile is Lava. ");
+
+        str = str.concat("<br>");
 
         if (state.getPredicateValue(10)) str = str.concat("Right tile is empty. ");
         if (state.getPredicateValue(11)) str = str.concat("Right tile is Wall. ");
@@ -89,13 +91,15 @@ public class PredicateTable {
         if (state.getPredicateValue(17)) str = str.concat("Down left tile is Wall. ");
         if (state.getPredicateValue(18)) str = str.concat("Down left tile is Lava. ");
 
-        if (state.getPredicateValue(19)) str = str.concat("Down right tile is empty. ");
-        if (state.getPredicateValue(20)) str = str.concat("Down right tile is Wall. ");
-        if (state.getPredicateValue(21)) str = str.concat("Down right tile is Lava. ");
+        str = str.concat("<br>");
 
-        if (state.getPredicateValue(22)) str = str.concat("Down front tile is empty. ");
-        if (state.getPredicateValue(23)) str = str.concat("Down front tile is Wall. ");
-        if (state.getPredicateValue(24)) str = str.concat("Down front tile is Lava. ");
+        if (state.getPredicateValue(19)) str = str.concat("Down front tile is empty. ");
+        if (state.getPredicateValue(20)) str = str.concat("Down front tile is Wall. ");
+        if (state.getPredicateValue(21)) str = str.concat("Down front tile is Lava. ");
+
+        if (state.getPredicateValue(22)) str = str.concat("Down right tile is empty. ");
+        if (state.getPredicateValue(23)) str = str.concat("Down right tile is Wall. ");
+        if (state.getPredicateValue(24)) str = str.concat("Down right tile is Lava. ");
 
         if (state.getPredicateValue(25)) str = str.concat("My direction is Left. ");
         if (state.getPredicateValue(26)) str = str.concat("My direction is Right. ");

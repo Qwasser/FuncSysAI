@@ -7,10 +7,10 @@ package labyrinth.level;
  * Time: 22:51
  * To change this template use File | Settings | File Templates.
  */
-public enum TyleType {
+public enum TileType {
     EMPTY, WALL, LAVA, GOLD;
 
-    public static Tile convertToTile(TyleType type)
+    public static Tile convertToTile(TileType type)
     {
         switch (type){
             case EMPTY:

@@ -6,7 +6,7 @@ import fs.IAction;
 import fs.PredicateSet;
 import fs.Rule;
 import labyrinth.level.LabyrinthMap;
-import labyrinth.level.TyleType;
+import labyrinth.level.TileType;
 import labyrinth.level.WalkerDirections;
 
 
@@ -43,7 +43,7 @@ public class LabyrinthGame {
 
         this.state.isFail = false;
         this.state.isWon = false;
-        this.state.hasGold = false;
+        this.state.gotBattery = false;
 
     }
 
@@ -70,13 +70,150 @@ public class LabyrinthGame {
 
     private void setSensorPredicates(PredicateSet situation)
     {
-        TyleType tyle = getUpLeftTyle();
+        int offset = 0;
+
+        switch (this.state.walkerDirection)
+        {
+            case UP:
+                offset = 0;
+                break;
+            case DOWN:
+                offset = 4;
+                break;
+            case LEFT:
+                offset = 6;
+                break;
+            case RIGHT:
+                offset = 2;
+                break;
+        }
 
         situation.set(PredicateTable.UpLeftIsEmpty, false);
         situation.set(PredicateTable.UpLeftIsWall, false);
         situation.set(PredicateTable.UpLeftIsLava, false);
 
-        switch (tyle)
+        situation.set(PredicateTable.UpFrontIsEmpty, false);
+        situation.set(PredicateTable.UpFrontIsWall, false);
+        situation.set(PredicateTable.UpFrontIsLava, false);
+
+        situation.set(PredicateTable.UpRightIsEmpty, false);
+        situation.set(PredicateTable.UpRightIsWall, false);
+        situation.set(PredicateTable.UpRightIsLava, false);
+
+        situation.set(PredicateTable.LeftIsEmpty, false);
+        situation.set(PredicateTable.LeftIsWall, false);
+        situation.set(PredicateTable.LeftIsLava, false);
+
+        situation.set(PredicateTable.RightIsEmpty, false);
+        situation.set(PredicateTable.RightIsWall, false);
+        situation.set(PredicateTable.RightIsLava, false);
+
+        situation.set(PredicateTable.DownLeftIsEmpty, false);
+        situation.set(PredicateTable.DownLeftIsWall, false);
+        situation.set(PredicateTable.DownLeftIsLava, false);
+
+        situation.set(PredicateTable.DownRightIsEmpty, false);
+        situation.set(PredicateTable.DownRightIsWall, false);
+        situation.set(PredicateTable.DownRightIsLava, false);
+
+        situation.set(PredicateTable.DownFrontIsEmpty, false);
+        situation.set(PredicateTable.DownFrontIsWall, false);
+        situation.set(PredicateTable.DownFrontIsLava, false);
+
+        TileType [] tiles = this.getTiles();
+
+        switch (tiles[(0+offset)%8])
+        {
+            case EMPTY:
+                situation.set(PredicateTable.UpFrontIsEmpty, true);
+                break;
+            case WALL:
+                situation.set(PredicateTable.UpFrontIsWall, true);
+                break;
+            case LAVA:
+                situation.set(PredicateTable.UpFrontIsLava, true);
+                break;
+        }
+
+        switch (tiles[(1+offset)%8])
+        {
+            case EMPTY:
+                situation.set(PredicateTable.UpRightIsEmpty, true);
+                break;
+            case WALL:
+                situation.set(PredicateTable.UpRightIsWall, true);
+                break;
+            case LAVA:
+                situation.set(PredicateTable.UpRightIsLava, true);
+                break;
+        }
+
+        switch (tiles[(2+offset)%8])
+        {
+            case EMPTY:
+                situation.set(PredicateTable.RightIsEmpty, true);
+                break;
+            case WALL:
+                situation.set(PredicateTable.RightIsWall, true);
+                break;
+            case LAVA:
+                situation.set(PredicateTable.RightIsLava, true);
+                break;
+        }
+
+        switch (tiles[(3+offset)%8])
+        {
+            case EMPTY:
+                situation.set(PredicateTable.DownRightIsEmpty, true);
+                break;
+            case WALL:
+                situation.set(PredicateTable.DownRightIsWall, true);
+                break;
+            case LAVA:
+                situation.set(PredicateTable.DownRightIsLava, true);
+                break;
+        }
+
+        switch (tiles[(4+offset)%8])
+        {
+            case EMPTY:
+                situation.set(PredicateTable.DownFrontIsEmpty, true);
+                break;
+            case WALL:
+                situation.set(PredicateTable.DownFrontIsWall, true);
+                break;
+            case LAVA:
+                situation.set(PredicateTable.DownFrontIsLava, true);
+                break;
+        }
+
+        switch (tiles[(5+offset)%8])
+        {
+            case EMPTY:
+                situation.set(PredicateTable.DownLeftIsEmpty, true);
+                break;
+            case WALL:
+                situation.set(PredicateTable.DownLeftIsWall, true);
+                break;
+            case LAVA:
+                situation.set(PredicateTable.DownLeftIsLava, true);
+                break;
+        }
+
+        switch (tiles[(6+offset)%8])
+        {
+            case EMPTY:
+                situation.set(PredicateTable.LeftIsEmpty, true);
+                break;
+            case WALL:
+                situation.set(PredicateTable.LeftIsWall, true);
+                break;
+            case LAVA:
+                situation.set(PredicateTable.LeftIsLava, true);
+                break;
+        }
+
+        switch (tiles[(7+offset)%8])
         {
             case EMPTY:
                 situation.set(PredicateTable.UpLeftIsEmpty, true);
@@ -88,97 +225,20 @@ public class LabyrinthGame {
                 situation.set(PredicateTable.UpLeftIsLava, true);
                 break;
         }
-
-        tyle = getUpFrontTyle();
-
-        situation.set(PredicateTable.UpFrontIsEmpty, false);
-        situation.set(PredicateTable.UpFrontIsWall, false);
-        situation.set(PredicateTable.UpFrontIsLava, false);
-
-        switch (tyle)
-        {
-            case EMPTY:
-                situation.set(PredicateTable.UpFrontIsEmpty, true);
-                break;
-            case WALL:
-                situation.set(PredicateTable.UpFrontIsWall, true);
-                break;
-            case LAVA:
-                situation.set(PredicateTable.UpFrontIsLava, true);
-                break;
-
-        }
-        tyle = getUpRightTyle();
-
-        situation.set(PredicateTable.UpRightIsEmpty, false);
-        situation.set(PredicateTable.UpRightIsWall, false);
-        situation.set(PredicateTable.UpRightIsLava, false);
-
-        switch (tyle)
-        {
-            case EMPTY:
-                situation.set(PredicateTable.UpRightIsEmpty, true);
-                break;
-            case WALL:
-                situation.set(PredicateTable.UpRightIsWall, true);
-                break;
-            case LAVA:
-                situation.set(PredicateTable.UpRightIsLava, true);
-                break;
-
-        }
     }
 
-    private TyleType getUpLeftTyle()
+    private TileType[] getTiles()
     {
-        switch (this.state.walkerDirection)
-        {
-            case UP:
-                return map.getCellType(state.playerX - 1, state.playerY - 1);
-
-            case DOWN:
-                return map.getCellType(state.playerX + 1, state.playerY + 1);
-
-            case LEFT:
-                return map.getCellType(state.playerX - 1, state.playerY + 1);
-
-            case RIGHT:
-                return map.getCellType(state.playerX + 1, state.playerY - 1);
-
-        }
-        return TyleType.WALL;
-    }
-
-    private TyleType getUpFrontTyle()
-    {
-        switch (this.state.walkerDirection)
-        {
-            case UP:
-                return map.getCellType(state.playerX, state.playerY - 1);
-            case DOWN:
-                return map.getCellType(state.playerX, state.playerY + 1);
-            case LEFT:
-                return map.getCellType(state.playerX - 1, state.playerY);
-            case RIGHT:
-                return map.getCellType(state.playerX + 1, state.playerY);
-        }
-        return TyleType.WALL;
-    }
-
-    private TyleType getUpRightTyle()
-    {
-        switch (this.state.walkerDirection)
-        {
-            case UP:
-                return map.getCellType(state.playerX + 1, state.playerY - 1);
-            case DOWN:
-                return map.getCellType(state.playerX - 1, state.playerY + 1);
-            case LEFT:
-                return map.getCellType(state.playerX - 1, state.playerY - 1);
-            case RIGHT:
-                return map.getCellType(state.playerX + 1, state.playerY + 1);
-        }
-        return TyleType.WALL;
+        TileType[] tiles = new TileType[8];
+        tiles[0] = this.map.getCellType(state.playerX, state.playerY - 1);
+        tiles[1] = this.map.getCellType(state.playerX + 1, state.playerY - 1);
+        tiles[2] = this.map.getCellType(state.playerX + 1 , state.playerY);
+        tiles[3] = this.map.getCellType(state.playerX + 1, state.playerY + 1);
+        tiles[4] = this.map.getCellType(state.playerX, state.playerY + 1);
+        tiles[5] = this.map.getCellType(state.playerX - 1, state.playerY + 1);
+        tiles[6] = this.map.getCellType(state.playerX - 1, state.playerY);
+        tiles[7] = this.map.getCellType(state.playerX - 1, state.playerY - 1);
+        return tiles;
     }
 
     private void setSelfStatePredicates(PredicateSet situation)
@@ -224,6 +284,10 @@ public class LabyrinthGame {
                 y = state.playerY;
                 break;
         }
+        if (state.hasBattery(x, y))
+            situation.set(PredicateTable.SeeBattery, true);
+        else
+            situation.set(PredicateTable.SeeBattery, false);
 
     }
 
@@ -260,6 +324,21 @@ public class LabyrinthGame {
             this.state.isFail = true;
     }
 
+    private TileType getUpFrontTyle()
+    {
+        switch (this.state.walkerDirection)
+        {
+            case UP:
+                return map.getCellType(state.playerX, state.playerY - 1);
+            case DOWN:
+                return map.getCellType(state.playerX, state.playerY + 1);
+            case LEFT:
+                return map.getCellType(state.playerX - 1, state.playerY);
+            case RIGHT:
+                return map.getCellType(state.playerX + 1, state.playerY);
+        }
+        return TileType.WALL;
+    }
 
     /*
     * Here I added some simple actions
@@ -267,12 +346,12 @@ public class LabyrinthGame {
 
     public void stepForward()
     {
-        TyleType frontTyle = this.getUpFrontTyle();
-        if (frontTyle == TyleType.LAVA)
+        TileType frontTyle = this.getUpFrontTyle();
+        if (frontTyle == TileType.LAVA)
         {
             this.state.isFail = true;
         }
-        if (frontTyle != TyleType.WALL)
+        if (frontTyle != TileType.WALL)
         {
             switch (this.state.walkerDirection)
             {
@@ -364,7 +443,7 @@ public class LabyrinthGame {
 
         this.state.isFail = false;
         this.state.isWon = false;
-        this.state.hasGold = false;
+        this.state.gotBattery = false;
 
         this.state.walkerDirection = WalkerDirections.RIGHT;
         this.state.hungerLevel = 0;
@@ -386,6 +465,8 @@ public class LabyrinthGame {
 
     public void tick()
     {
+        PredicateSet predicates =  this.getSituationForAnimate(walker);
+        state.setPredicates(predicates);
         this.state.tick();
     }
 

@@ -12,10 +12,7 @@ import labyrinth.gfx.Screen;
 import labyrinth.gfx.SpriteSheet;
 import labyrinth.level.LabyrinthMap;
 import labyrinth.level.Level;
-import labyrinth.level.MapLibrary;
-import labyrinth.level.TyleType;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -120,8 +117,6 @@ public class LabyrinthUI extends Canvas implements Runnable{
                     int bb = (b*255/5);
 
                     colours[index++] = rr<<16|gg<<8|bb;
-
-
                 }
             }
         }

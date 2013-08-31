@@ -24,6 +24,7 @@ public class GeneralUI {
     LabyrinthGame game;
     JPanel buttonPanel;
     JPanel infoPanel;
+    JPanel bottomPanel;
 
     JButton turnButton;
     JButton goButton;
@@ -32,25 +33,35 @@ public class GeneralUI {
     JButton fs100Button;
     JButton resetButton;
 
+    JLabel label;
+
+    GameState state;
+
     ActionListener buttonListener;
 
     public GeneralUI(){
         mainFrame = new JFrame("FS");
 
         LabyrinthMap map = MapLibrary.mediumMap();
-        GameState state = new GameState(map);
+        state = new GameState(map);
         game = new LabyrinthGame(map, state);
         labUI = new LabyrinthUI(state, map);
 
         buttonPanel = new JPanel();
         this.initButtons();
 
+        label = new JLabel(state.getStringPredicates());
+
         infoPanel = new JPanel();
-        buttonPanel.add(new JLabel("test"), BorderLayout.NORTH);
-        //.add(infoPanel, BorderLayout.NORTH);
+        infoPanel.add(label, BorderLayout.CENTER);
+
+        bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.PAGE_AXIS));
+        bottomPanel.add(infoPanel);
+        bottomPanel.add(buttonPanel);
 
         mainFrame.add(labUI, BorderLayout.CENTER);
-        mainFrame.add(buttonPanel, BorderLayout.SOUTH);
+        mainFrame.add(bottomPanel, BorderLayout.SOUTH);
 
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.pack();
@@ -97,6 +108,7 @@ public class GeneralUI {
 
     public void HandleButtons(ActionEvent e)
     {
+
         if (e.getSource() == this.turnButton)
         {
             this.game.turnLeft();
@@ -124,6 +136,6 @@ public class GeneralUI {
         {
             this.game.resetGame();
         }
-
+        label.setText(state.getStringPredicates());
     }
 }

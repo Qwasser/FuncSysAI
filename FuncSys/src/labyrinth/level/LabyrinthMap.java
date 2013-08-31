@@ -20,7 +20,7 @@ public class LabyrinthMap
     int [] batteryX;
     int [] batteryY;
 
-    private TyleType[][] map;
+    private TileType[][] map;
     private int[][] batteryLocation;
 
     public void setBatteryPos(int x, int y, int num)
@@ -101,12 +101,12 @@ public class LabyrinthMap
         return this.batteryCount;
     }
 
-    public TyleType getCellType(int x, int y)
+    public TileType getCellType(int x, int y)
     {
         if ((x > width) || (x < 0) ||
                 (y > height) || (y < 0))
         {
-            return TyleType.WALL;
+            return TileType.WALL;
         }
         return map[x][y];
     }
@@ -121,12 +121,12 @@ public class LabyrinthMap
         this.batteryY = new int[batteryCount];
         this.batteryX = new  int[batteryCount];
 
-        this.map = new TyleType[width][height];
+        this.map = new TileType[width][height];
 
         this.batteryLocation = new int[width][height];
     }
 
-    public void setTyle(int x, int y, TyleType tyle)
+    public void setTyle(int x, int y, TileType tyle)
     {
         if (x >= width || y >= height)
         {
