@@ -42,7 +42,7 @@ public class GeneralUI {
     public GeneralUI(){
         mainFrame = new JFrame("FS");
 
-        LabyrinthMap map = MapLibrary.mediumMap();
+        LabyrinthMap map = MapLibrary.mediumMapWithoutLava();
         state = new GameState(map);
         game = new LabyrinthGame(map, state);
         labUI = new LabyrinthUI(state, map);

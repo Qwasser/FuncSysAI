@@ -318,12 +318,6 @@ public class LabyrinthGame {
 
     }
 
-    private void hungerUpdate(){
-        this.state.hungerLevel++;
-        if (this.state.hungerLevel >= GameState.HUNGER_LIMIT-1)
-            this.state.isFail = true;
-    }
-
     private TileType getUpFrontTyle()
     {
         switch (this.state.walkerDirection)
@@ -470,6 +464,11 @@ public class LabyrinthGame {
         this.state.tick();
     }
 
+    public void removeBattery()
+    {
+        state.gotBattery = false;
+    }
+
 
     public void fsTick(int steps)
     {
@@ -477,29 +476,22 @@ public class LabyrinthGame {
         if (steps==1){
             this.walker.makeAction();
             //this.hungerUpdate();
+
             this.walker.observeResult();
-            if (state.isFail)
-            {
-                this.resetGame();
-            }
+            this.tick();
+            this.removeBattery();
+
         }
         else
         {
-            while (true)
+            while (i < 100)
             {
                 i++;
                 this.walker.makeAction();
                 //this.hungerUpdate();
                 this.walker.observeResult();
-
-
-
-                if (state.isFail)
-                {
-                    //this.resetGame();
-                    break;
-                    //
-                }
+                this.tick();
+                this.removeBattery();
             }
         }
 
