@@ -64,7 +64,8 @@ public class PredicateTable {
 
     public static String predicatesToString(PredicateSet state)
     {
-        String str = "<html>";
+        String str = "<html><div style=\"text-align: center;\">";
+
         if (state.getPredicateValue(1)) str = str.concat("Upper left tile is empty. ");
         if (state.getPredicateValue(2)) str = str.concat("Upper left tile is Wall. ");
         if (state.getPredicateValue(3)) str = str.concat("Upper left tile is Lava. ");
@@ -109,6 +110,8 @@ public class PredicateTable {
         if (state.getPredicateValue(29)) str = str.concat("See battery. ");
         if (state.getPredicateValue(30)) str = str.concat("Found battery. ");
         if (state.getPredicateValue(31)) str = str.concat("Dead. ");
+
+        str = str.concat("</html>");
 
         return str;
     }

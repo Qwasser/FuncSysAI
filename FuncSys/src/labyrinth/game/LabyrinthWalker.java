@@ -21,7 +21,7 @@ class LabyrinthWalker extends IAcceptor {
 
     public LabyrinthWalker(LabyrinthGame labyrinth, PredicateSet goal) {
         this.labyrinth = labyrinth;
-        primaryFS = (IFunctionalSystem) new NegFunctionalSystem(goal, 5);
+        primaryFS = (IFunctionalSystem) new RandomWalker();
     }
 
     public void makeAction()

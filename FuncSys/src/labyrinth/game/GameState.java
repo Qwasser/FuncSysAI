@@ -42,8 +42,7 @@ public class GameState {
 
     public WalkerDirections walkerDirection;
 
-    boolean isFail;
-    boolean isWon;
+    boolean isDead;
     boolean gotBattery;
 
     public GameState(LabyrinthMap map)

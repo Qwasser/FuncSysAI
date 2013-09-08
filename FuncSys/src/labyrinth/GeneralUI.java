@@ -53,7 +53,8 @@ public class GeneralUI {
         label = new JLabel(state.getStringPredicates());
 
         infoPanel = new JPanel();
-        infoPanel.add(label, BorderLayout.CENTER);
+        infoPanel.setPreferredSize(new Dimension(500, 80));
+        infoPanel.add(label, SwingConstants.CENTER);
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.PAGE_AXIS));

@@ -14,7 +14,7 @@ import labyrinth.level.Level;
  */
 public class Player extends Mob {
     private final InputHandler input;
-    private int colour = Colours.get(-1, 000, 115, 510);
+    private int colour = Colours.get(-1, 000, -1, 510);
 
     int xTile = 0;
     boolean flipped = false;

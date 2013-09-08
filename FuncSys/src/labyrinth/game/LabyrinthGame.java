@@ -1,10 +1,8 @@
 package labyrinth.game;
 
-import fs.FunctionalSystem;
 import fs.IAcceptor;
 import fs.IAction;
 import fs.PredicateSet;
-import fs.Rule;
 import labyrinth.level.LabyrinthMap;
 import labyrinth.level.TileType;
 import labyrinth.level.WalkerDirections;
@@ -12,7 +10,6 @@ import labyrinth.level.WalkerDirections;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -41,8 +38,7 @@ public class LabyrinthGame {
         this.state.hungerLevel = 0;
         this.state.walkerDirection = WalkerDirections.DOWN;
 
-        this.state.isFail = false;
-        this.state.isWon = false;
+        this.state.isDead = false;
         this.state.gotBattery = false;
 
     }
@@ -68,6 +64,9 @@ public class LabyrinthGame {
         return situation;
     }
 
+    /*
+    Sets states of eight cells around animat
+     */
     private void setSensorPredicates(PredicateSet situation)
     {
         int offset = 0;
@@ -227,6 +226,10 @@ public class LabyrinthGame {
         }
     }
 
+    /*
+    Creates an array of tiles around animate for efficient predicate generation (direction permutation)
+     */
+
     private TileType[] getTiles()
     {
         TileType[] tiles = new TileType[8];
@@ -241,6 +244,10 @@ public class LabyrinthGame {
         return tiles;
     }
 
+
+    /*
+    sets predicates of direction and battery seeing
+     */
     private void setSelfStatePredicates(PredicateSet situation)
     {
         situation.set(PredicateTable.directionUp, false);
@@ -291,9 +298,14 @@ public class LabyrinthGame {
 
     }
 
+    /**
+    sets predicates of game state
+    found battery
+    dead
+     **/
     private void setGameState(PredicateSet situation)
     {
-        if (this.state.isWon)
+        if (this.state.gotBattery)
         {
             situation.set(PredicateTable.FoundBattery, true);
         }
@@ -301,20 +313,8 @@ public class LabyrinthGame {
         {
             situation.set(PredicateTable.FoundBattery, false);
         }
-        /*
-        situation.set(PredicateTable.NotHungry, false);
-        situation.set(PredicateTable.Hungry, false);
-        situation.set(PredicateTable.VeryHungry, false);
 
-        // hungerClass = (this.state.hungerLevel*3)/GameState.HUNGER_LIMIT;
-        //System.out.println(hungerClass);
-        //if (hungerClass == 0) situation.set(PredicateTable.NotHungry, true);
-        //if (hungerClass == 1) situation.set(PredicateTable.Hungry, true);
-        //if (hungerClass >= 2) situation.set(PredicateTable.VeryHungry, true);
-        //if (state.hungerLevel == GameState.HUNGER_LIMIT - 1)
-        */
-        situation.set(PredicateTable.Dead, this.state.isFail);
-
+        situation.set(PredicateTable.Dead, this.state.isDead);
 
     }
 
@@ -338,12 +338,18 @@ public class LabyrinthGame {
     * Here I added some simple actions
     */
 
+    /**
+     * step actions
+     * makes dead if in steps in lava
+     * do nothing if steps in wall
+     */
+
     public void stepForward()
     {
         TileType frontTyle = this.getUpFrontTyle();
         if (frontTyle == TileType.LAVA)
         {
-            this.state.isFail = true;
+            this.state.isDead = true;
         }
         if (frontTyle != TileType.WALL)
         {
@@ -435,26 +441,11 @@ public class LabyrinthGame {
         this.state.playerX = map.getPlayerStartX();
         this.state.playerY = map.getPlayerStartY();
 
-        this.state.isFail = false;
-        this.state.isWon = false;
+        this.state.isDead = false;
         this.state.gotBattery = false;
 
         this.state.walkerDirection = WalkerDirections.RIGHT;
         this.state.hungerLevel = 0;
-    }
-
-    public void start()
-    {
-        //System.out.println(this.state.walkerDirection);
-        this.turnLeft();
-        //System.out.println(this.state.walkerDirection);
-        this.stepForward();
-        this.stepForward();
-        this.stepForward();
-        this.stepForward();
-        this.grabGold();
-        this.turnRight();
-
     }
 
     public void tick()
@@ -467,6 +458,15 @@ public class LabyrinthGame {
     public void removeBattery()
     {
         state.gotBattery = false;
+    }
+
+    /**
+     * counts amount of batteries found
+     */
+
+    public void testOne()
+    {
+
     }
 
 
@@ -495,7 +495,7 @@ public class LabyrinthGame {
             }
         }
 
-
+         /*
         System.out.println("steps:" + i);
 
         System.out.println(walker.memory.toString());
@@ -523,5 +523,6 @@ public class LabyrinthGame {
                 }
             }
         }
+        */
     }
 }
