@@ -23,13 +23,17 @@ public class LabyrinthGame {
     LabyrinthWalker walker;
     GameState state;
 
+    //Statistics
+    int batteriesEaten = 0;
+    int stepsMade = 0;
+
     public LabyrinthGame(LabyrinthMap map, GameState state)
     {
         this.map = map;
         this.state = state;
 
         PredicateSet goal = new PredicateSet();
-        goal.set(PredicateTable.Dead, true);
+        goal.set(PredicateTable.FoundBattery, true);
         this.walker = new LabyrinthWalker(this, goal);
 
         this.state.playerX = map.getPlayerStartX();
@@ -86,6 +90,15 @@ public class LabyrinthGame {
                 offset = 2;
                 break;
         }
+
+        situation.set(PredicateTable.UpFrontHasBattery, false);
+        situation.set(PredicateTable.UpRightHasBattery, false);
+        situation.set(PredicateTable.RightHasBattery, false);
+        situation.set(PredicateTable.DownRightHasBattery, false);
+        situation.set(PredicateTable.DownFrontHasBattery, false);
+        situation.set(PredicateTable.DownLeftHasBattery, false);
+        situation.set(PredicateTable.LeftHasBattery, false);
+        situation.set(PredicateTable.UpLeftHasBattery, false);
 
         situation.set(PredicateTable.UpLeftIsEmpty, false);
         situation.set(PredicateTable.UpLeftIsWall, false);
@@ -224,6 +237,23 @@ public class LabyrinthGame {
                 situation.set(PredicateTable.UpLeftIsLava, true);
                 break;
         }
+
+        int [][] directions = new int [][]{
+                {state.playerX, state.playerX+1, state.playerX+1, state.playerX+1, state.playerX, state.playerX-1, state.playerX-1, state.playerX-1},
+                {state.playerY-1, state.playerY-1, state.playerY, state.playerY+1, state.playerY+1, state.playerY+1, state.playerY, state.playerY-1}
+        };
+
+
+        situation.set(PredicateTable.UpFrontHasBattery, state.hasBattery(directions[0][(0+offset)%8], directions[1][(0+offset)%8]));
+        situation.set(PredicateTable.UpRightHasBattery, state.hasBattery(directions[0][(1+offset)%8], directions[1][(1+offset)%8]));
+        situation.set(PredicateTable.RightHasBattery, state.hasBattery(directions[0][(2+offset)%8], directions[1][(2+offset)%8]));
+        situation.set(PredicateTable.DownRightHasBattery, state.hasBattery(directions[0][(3+offset)%8], directions[1][(3+offset)%8]));
+        situation.set(PredicateTable.DownFrontHasBattery, state.hasBattery(directions[0][(4+offset)%8], directions[1][(4+offset)%8]));
+        situation.set(PredicateTable.DownLeftHasBattery, state.hasBattery(directions[0][(5+offset)%8], directions[1][(5+offset)%8]));
+        situation.set(PredicateTable.LeftHasBattery, state.hasBattery(directions[0][(6+offset)%8], directions[1][(6+offset)%8]));
+        situation.set(PredicateTable.UpLeftHasBattery, state.hasBattery(directions[0][(7+offset)%8], directions[1][(7+offset)%8]));
+        situation.set(PredicateTable.StandOnBattery, state.hasBattery(state.playerX, state.playerY));
+
     }
 
     /*
@@ -395,7 +425,11 @@ public class LabyrinthGame {
         }
 
         if (state.hasBattery(x, y))
+        {
             state.grabBattery(x, y);
+            state.gotBattery = true;
+            batteriesEaten += 1;
+        }
     }
 
     public void turnLeft()
@@ -480,7 +514,7 @@ public class LabyrinthGame {
             this.walker.observeResult();
             this.tick();
             this.removeBattery();
-
+            stepsMade += 1;
         }
         else
         {
@@ -493,36 +527,13 @@ public class LabyrinthGame {
                 this.tick();
                 this.removeBattery();
             }
+            stepsMade += 100;
         }
 
-         /*
-        System.out.println("steps:" + i);
 
-        System.out.println(walker.memory.toString());
-        System.out.println(walker.primaryFS.probTableToString());
-        for (Rule rule: walker.primaryFS.getRules())
-        {
-            System.out.println(PredicateTable.predicatesToString(rule.getPredicates()) + "Action is "+rule.getAction().toString() + " Prob is is "+rule.getProbability());
-        }
+        System.out.println(stepsMade);
+        System.out.println(batteriesEaten);
+        System.out.println(walker.primaryFS.toString());
 
-        Set<FunctionalSystem> set = walker.primaryFS.getLinkToSubFS();
-        for (FunctionalSystem fs: set){
-            System.out.println("Depth is near 1");
-            for (Rule rule: fs.getRules())
-            {
-                System.out.println("RULE 1111111111111111");
-                System.out.println(PredicateTable.predicatesToString(rule.getPredicates()) + "Action is "+rule.getAction().toString() + " Prob is is "+rule.getProbability());
-            }
-
-            Set<FunctionalSystem> set2 = fs.getLinkToSubFS();
-            for (FunctionalSystem fs2: set2){
-                System.out.println("Depth is near 0");
-                for (Rule rule2: fs2.getRules())
-                {
-                    System.out.println(PredicateTable.predicatesToString(rule2.getPredicates()) + "Action is "+rule2.getAction().toString() + " Prob is is "+rule2.getProbability());
-                }
-            }
-        }
-        */
     }
 }

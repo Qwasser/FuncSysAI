@@ -14,9 +14,9 @@ import labyrinth.level.Level;
  */
 public class Player extends Mob {
     private final InputHandler input;
-    private int colour = Colours.get(-1, 000, -1, 510);
+    private int colour = Colours.get(-1, 123, 234, 554);
 
-    int xTile = 0;
+    int yTile = 0;
     boolean flipped = false;
 
     public Player(Level level, int x, int y, InputHandler input) {
@@ -38,18 +38,18 @@ public class Player extends Mob {
         switch (this.level.state.walkerDirection)
         {
             case DOWN:
-                this.xTile = 0;
+                this.yTile = 0;
                 break;
             case UP:
-                this.xTile = 2;
+                this.yTile = 4;
                 break;
             case LEFT:
                 this.flipped = true;
-                this.xTile = 4;
+                this.yTile = 2;
                 break;
             case RIGHT:
                 this.flipped = false;
-                this.xTile = 4;
+                this.yTile = 2;
                 break;
         }
 
@@ -58,7 +58,7 @@ public class Player extends Mob {
     @Override
     public void render(Screen screen) {
 
-        int yTile = 2;
+        int xTile = 0;
 
         int scale = 2;
         int modifier = 8 * scale;
@@ -68,20 +68,20 @@ public class Player extends Mob {
 
         if (!flipped)
         {
-            screen.render(xOffset , yOffset, xTile + yTile*32, colour, flipped, false, scale);
+            screen.render(xOffset , yOffset, xTile + yTile*16, colour, flipped, false, scale);
             //System.out.println("renders");
-            screen.render(xOffset + modifier, yOffset, xTile + 1 + yTile*32, colour, flipped, false,  scale);
-            screen.render(xOffset, yOffset + modifier, xTile + (1 + yTile)*32, colour, flipped, false, scale);
-            screen.render(xOffset + modifier, yOffset + modifier, xTile + 1 + (yTile+1)*32, colour, flipped, false, scale);
+            screen.render(xOffset + modifier, yOffset, xTile + 1 + yTile*16, colour, flipped, false,  scale);
+            screen.render(xOffset, yOffset + modifier, xTile + (1 + yTile)*16, colour, flipped, false, scale);
+            screen.render(xOffset + modifier, yOffset + modifier, xTile + 1 + (yTile+1)*16, colour, flipped, false, scale);
         }
 
         else
         {
-            screen.render(xOffset + modifier , yOffset, xTile + yTile*32, colour, flipped, false, scale);
+            screen.render(xOffset + modifier , yOffset, xTile + yTile*16, colour, flipped, false, scale);
             //System.out.println("renders");
-            screen.render(xOffset, yOffset, xTile + 1 + yTile*32, colour, flipped, false,  scale);
-            screen.render(xOffset + modifier, yOffset + modifier, xTile + (1 + yTile)*32, colour, flipped, false, scale);
-            screen.render(xOffset, yOffset + modifier, xTile + 1 + (yTile+1)*32, colour, flipped, false, scale);
+            screen.render(xOffset, yOffset, xTile + 1 + yTile*16, colour, flipped, false,  scale);
+            screen.render(xOffset + modifier, yOffset + modifier, xTile + (1 + yTile)*16, colour, flipped, false, scale);
+            screen.render(xOffset, yOffset + modifier, xTile + 1 + (yTile+1)*16, colour, flipped, false, scale);
         }
 
         //To change body of implemented methods use File | Settings | File Templates.

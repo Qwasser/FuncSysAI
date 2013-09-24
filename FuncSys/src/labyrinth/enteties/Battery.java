@@ -14,7 +14,7 @@ import labyrinth.level.Level;
  */
 public class Battery extends Mob {
 
-    private int colour = Colours.get(-1, 000, 141, 151);
+    private int colour = Colours.get(-1, 300, 540, 255);
 
     int xTile = 0;
     int num;
@@ -39,8 +39,8 @@ public class Battery extends Mob {
     public void render(Screen screen) {
         if(!this.level.state.isTaken(num))
         {
-            int yTile = 2;
-            int xTile = 6;
+            int yTile = 8;
+            int xTile = 2;
 
             int scale = 2;
             int modifier = 8 * scale;
@@ -49,11 +49,11 @@ public class Battery extends Mob {
             int yOffset = y - modifier/2 - 4;
 
 
-            screen.render(xOffset , yOffset, xTile + yTile*32, colour, false, false, scale);
+            screen.render(xOffset , yOffset, xTile + yTile*16, colour, false, false, scale);
             //System.out.println("renders");
-            screen.render(xOffset + modifier, yOffset, xTile + 1 + yTile*32, colour, false, false,  scale);
-            screen.render(xOffset, yOffset + modifier, xTile + (1 + yTile)*32, colour, false, false, scale);
-            screen.render(xOffset + modifier, yOffset + modifier, xTile + 1 + (yTile+1)*32, colour, false, false, scale);
+            screen.render(xOffset + modifier, yOffset, xTile + 1 + yTile*16, colour, false, false,  scale);
+            screen.render(xOffset, yOffset + modifier, xTile + (1 + yTile)*16, colour, false, false, scale);
+            screen.render(xOffset + modifier, yOffset + modifier, xTile + 1 + (yTile+1)*16, colour, false, false, scale);
         }
 
     }

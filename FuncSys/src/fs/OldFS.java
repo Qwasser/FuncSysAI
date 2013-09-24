@@ -580,7 +580,6 @@ public class OldFS implements IFunctionalSystem
             throw new InvalidArgumentException( TAG, "reachGoal", "acceptor", "null" );
 
         IAction actionPerformed = null;
-        OldFS lastFs = this;
         PredicateSet startState = acceptor.getCurrentSituation();
 
         Rule rule = this.findRule( startState );
@@ -600,7 +599,8 @@ public class OldFS implements IFunctionalSystem
 
         if( ruleProbability < subFsProbability )
         {
-            rule = getRuleForFs( subFs );
+            subFs.performAction(acceptor);
+            return;
 
         }
         else
@@ -614,13 +614,13 @@ public class OldFS implements IFunctionalSystem
             {
                 rule.execute( acceptor );
                 actionPerformed = rule.getAction();
-                lastFs = subFs;
             }
         }
 
         acceptor.getMemory().lastAction = actionPerformed;
-        acceptor.getMemory().lastFs = lastFs;
+        acceptor.getMemory().lastFs = this;
         acceptor.getMemory().initialSituation = startState;
+        acceptor.getMemory().rule = rule;
     }
 
     @Override
@@ -632,7 +632,7 @@ public class OldFS implements IFunctionalSystem
         PredicateSet startState = acceptor.getMemory().initialSituation;
         boolean wasRandom = acceptor.getMemory().isRandom;
 
-        Rule rule = null;
+        Rule rule = acceptor.getMemory().rule;
         lastFs.fireEvent(acceptor, startState, actionPerformed, endState);
         boolean goalReached = endState.contains( lastFs.goal );
 
@@ -643,8 +643,8 @@ public class OldFS implements IFunctionalSystem
                 rule = new Rule( startState, actionPerformed, new Statistics() );
             }
 
-            if( !rules.containsKey( rule ) || rules.get( rule ) == null )
-                rules.put( rule, generateSubFS( acceptor.getHistoryInstance(), startState ) );
+            if( !lastFs.rules.containsKey( rule ) || lastFs.rules.get( rule ) == null )
+                lastFs.rules.put( rule, generateSubFS( acceptor.getHistoryInstance(), startState ) );
 
             rule.encourage();
 
@@ -688,6 +688,17 @@ public class OldFS implements IFunctionalSystem
     @Override
     public String probTableToString() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder str = new StringBuilder("FS: ");
+        for (Rule rule: this.rules.keySet())
+        {
+            str.append(rule.toString());
+        }
+        return str.toString();
     }
 
     /**

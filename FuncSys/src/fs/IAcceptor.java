@@ -35,6 +35,7 @@ public abstract class IAcceptor
         public IAction lastAction;
         public IFunctionalSystem lastFs;
         public Boolean isRandom;
+        public Rule rule;
 
         public PredicateSet initialSituation;
 

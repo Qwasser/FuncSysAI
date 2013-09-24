@@ -68,8 +68,8 @@ public class MapLibrary {
         map.setBatteryPos(3, 3, 0);
 
         map.setTyle(0, 0, TileType.WALL);
-        map.setTyle(1, 0, TileType.WALL);
-        map.setTyle(2, 0, TileType.WALL);
+        map.setTyle(1, 0, TileType.EMPTY);
+        map.setTyle(2, 0, TileType.EMPTY);
         map.setTyle(3, 0, TileType.WALL);
         map.setTyle(4, 0, TileType.WALL);
         map.setTyle(5, 0, TileType.WALL);
@@ -78,17 +78,17 @@ public class MapLibrary {
 
         map.setTyle(0, 1, TileType.WALL);
         map.setTyle(1, 1, TileType.WALL);
-        map.setTyle(2, 1, TileType.LAVA);
+        map.setTyle(2, 1, TileType.WALL);
         map.setTyle(3, 1, TileType.WALL);
-        map.setTyle(4, 1, TileType.LAVA);
+        map.setTyle(4, 1, TileType.WALL);
         map.setTyle(5, 1, TileType.WALL);
         map.setTyle(6, 1, TileType.WALL);
         map.setTyle(7, 1, TileType.WALL);
 
         map.setTyle(0, 2, TileType.WALL);
         map.setTyle(1, 2, TileType.EMPTY);
-        map.setTyle(2, 2, TileType.EMPTY);
-        map.setTyle(3, 2, TileType.EMPTY);
+        map.setTyle(2, 2, TileType.WALL);
+        map.setTyle(3, 2, TileType.WALL);
         map.setTyle(4, 2, TileType.EMPTY);
         map.setTyle(5, 2, TileType.EMPTY);
         map.setTyle(6, 2, TileType.EMPTY);
@@ -96,9 +96,9 @@ public class MapLibrary {
 
         map.setTyle(0, 3, TileType.WALL);
         map.setTyle(1, 3, TileType.WALL);
-        map.setTyle(2, 3, TileType.LAVA);
+        map.setTyle(2, 3, TileType.WALL);
         map.setTyle(3, 3, TileType.EMPTY);
-        map.setTyle(4, 3, TileType.LAVA);
+        map.setTyle(4, 3, TileType.WALL);
         map.setTyle(5, 3, TileType.WALL);
         map.setTyle(6, 3, TileType.WALL);
         map.setTyle(7, 3, TileType.WALL);

@@ -16,7 +16,7 @@ public enum TileType {
             case EMPTY:
                 return Tile.FLOOR;
             case WALL:
-                return Tile.LAVA;
+                return Tile.WALL[0];
             case LAVA:
                 return Tile.LAVA;
             case GOLD:

@@ -123,7 +123,7 @@ public class LabyrinthUI extends Canvas implements Runnable{
 
         try
         {
-            screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/res/sprite_sheet.png"));
+            screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/res/tex_bw.png"));
         }catch (IOException e)
         {
             e.printStackTrace();

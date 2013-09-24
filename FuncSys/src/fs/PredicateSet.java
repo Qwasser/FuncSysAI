@@ -55,7 +55,7 @@ public class PredicateSet {
         if (index < 0 || index >= 64)
             throw new InvalidArgumentException(TAG, "set", "index", String.valueOf(index));
 
-        long pattern = 1 << index;
+        long pattern = 1L << index;
 
         this.predicates |= pattern;
         if (value)
@@ -68,7 +68,7 @@ public class PredicateSet {
         if (index < 0 || index >= 64)
             throw new InvalidArgumentException(TAG, "set", "index", String.valueOf(index));
 
-        long pattern = 1 << index;
+        long pattern = 1L << index;
 
         this.predicates &= ~pattern;
         this.states &= ~pattern;

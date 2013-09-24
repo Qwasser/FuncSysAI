@@ -36,7 +36,7 @@ public class Level {
     public void generateLevel() {
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
-                 tiles[x + y*width] = TileType.convertToTile(map.getCellType(x, y)).getid();
+                 tiles[x + y*width] = map.getTyleID(x, y);
             }
         }
     }
